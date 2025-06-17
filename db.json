@@ -1,0 +1,34 @@
+{
+  "seller": [
+    {
+      "id": "728f",
+      "name": "ariel cano",
+      "email": "ariel2107@gmail.com",
+      "password": "abc123"
+    },
+    {
+      "id": "bf40",
+      "name": "johan libert",
+      "email": "johanlibert@gmail.com",
+      "password": "monster"
+    },
+    {
+      "id": "1026",
+      "name": "peter",
+      "password": "abc123",
+      "email": "peter@test.com"
+    },
+    {
+      "id": "fa63",
+      "name": "john snow",
+      "password": "nothing",
+      "email": "johnsnow@gmail.com"
+    },
+    {
+      "id": "dc60",
+      "name": "john black",
+      "password": "nothing1",
+      "email": "johnblack@gmail.com"
+    }
+  ]
+}
