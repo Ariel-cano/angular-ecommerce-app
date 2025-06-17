@@ -20,6 +20,7 @@
   </div>
   <div class="login" *ngIf="showLogin">
     <h1>Seller login</h1>
+    <p class="error-p" *ngIf="seller.isLoginError()">Email or password is not correct</p>
     <form class="common-form" #sellerLogin="ngForm" (ngSubmit)="login(sellerLogin.value)">
       <input type="email"
              class="form-input"

@@ -17,7 +17,7 @@ import {NgIf} from '@angular/common';
 export class SellerAuthComponent implements OnInit{
   showLogin : boolean = true;
 
-  constructor(private seller: SellerService) {
+  constructor(protected seller: SellerService) {
   }
 
   ngOnInit() {
@@ -35,6 +35,8 @@ export class SellerAuthComponent implements OnInit{
     this.seller.userSignUp(data);
   }
   login(data: signUp){
-    console.warn(data);
+    this.seller.userLogin(data);
   }
+
+
 }
