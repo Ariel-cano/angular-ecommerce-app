@@ -3,10 +3,11 @@ import {HomeComponent} from './components/home/home.component';
 import {SellerAuthComponent} from './components/seller-auth/seller-auth.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import {SellerHomeComponent} from './components/seller-home/seller-home.component';
+import {authGuard} from './guards/auth.guard';
 
 export const routes: Routes = [
   {component: HomeComponent, path: ''},
   {component: SellerAuthComponent, path: 'seller-auth'},
-  {component: SellerHomeComponent, path: 'seller-home'},
+  {component: SellerHomeComponent, path: 'seller-home', canActivate: [authGuard]},
   {component: NotFoundComponent, path: '**'},
 ];
