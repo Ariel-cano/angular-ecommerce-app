@@ -41,3 +41,15 @@ body{
 .message-p{
   color: green;
 }
+
+.add-product, .update-product{
+  text-align: center;
+
+  h1 {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+
+  }
+}
+

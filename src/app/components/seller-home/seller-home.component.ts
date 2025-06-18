@@ -2,15 +2,17 @@ import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../../services/product.service';
 import {Product} from '../../models/data-types';
 import {NgForOf} from '@angular/common';
-import {faTrash} from '@fortawesome/free-solid-svg-icons'
+import {faTrash, faEdit} from '@fortawesome/free-solid-svg-icons'
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-seller-home',
   standalone: true,
   imports: [
     NgForOf,
-    FaIconComponent
+    FaIconComponent,
+    RouterLink
   ],
   templateUrl: './seller-home.component.html',
   styleUrl: './seller-home.component.scss'
@@ -19,6 +21,7 @@ export class SellerHomeComponent implements OnInit{
   productList: Product[] | undefined;
   productMessage : undefined | string;
   icon = faTrash;
+  iconEdit = faEdit;
   constructor(private productSrc: ProductService) {
   }
 
