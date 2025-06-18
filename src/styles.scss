@@ -1,3 +1,9 @@
+:root {
+  --primary-color: blueViolet;
+
+}
+
+
 body{
   font-family: sans-serif;
 }
@@ -17,13 +23,13 @@ body{
 .form-input{
   height: 35px;
   margin-bottom: 20px;
-  border: 1px solid blueviolet;
+  border: 1px solid var(--primary-color);
   padding-left: 15px;
   color: blueviolet;
 }
 .form-button{
   height: 35px;
-  border: 1px solid blueviolet;
+  border: 1px solid var(--primary-color);
   color: blueviolet;
   cursor: pointer;
 }

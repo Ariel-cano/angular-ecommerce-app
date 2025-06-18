@@ -3,9 +3,13 @@
   justify-content: space-between;
 
   h1{
-    color: blueviolet;
+    color: var(--primary-color);
     margin: 0;
     font-size: 40px;
+    a{
+      text-decoration: none;
+      color: var(--primary-color);
+    }
   }
 
   .nav-search{
@@ -17,15 +21,15 @@
 
     input{
       flex: 1;
-      color: blueviolet;
-      border: 1px solid blueviolet;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
       height: 35px;
       border-right: none;
     }
 
     button{
-      color: blueviolet;
-      border: 1px solid blueviolet;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
       height: 39px;
     }
   }
@@ -40,7 +44,7 @@
       padding-top: 15px;
       a{
         text-decoration: none;
-        color: blueviolet;
+        color: var(--primary-color);
       }
     }
   }
