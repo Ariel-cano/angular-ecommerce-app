@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
-import {NgIf, NgSwitch, NgSwitchCase} from '@angular/common';
+import {NgIf, NgSwitch, NgSwitchCase, TitleCasePipe} from '@angular/common';
 
 
 @Component({
@@ -10,7 +10,8 @@ import {NgIf, NgSwitch, NgSwitchCase} from '@angular/common';
     NgIf,
     RouterLink,
     NgSwitch,
-    NgSwitchCase
+    NgSwitchCase,
+    TitleCasePipe
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -18,6 +19,7 @@ import {NgIf, NgSwitch, NgSwitchCase} from '@angular/common';
 export class HeaderComponent implements OnInit {
 
   menuType: string = 'default';
+  sellerName: string = '';
 
   constructor(private route: Router) {
 
@@ -27,6 +29,9 @@ export class HeaderComponent implements OnInit {
     this.route.events.subscribe((val: any) => {
         if (val.url) {
           if (localStorage.getItem('seller') && val.url.includes('seller')) {
+            let sellerStore = localStorage.getItem('seller');
+            let sellerData = sellerStore && JSON.parse(sellerStore)[0];
+            this.sellerName = sellerData.name;
             this.menuType = 'seller';
           } else {
             this.menuType = 'default';
@@ -34,6 +39,11 @@ export class HeaderComponent implements OnInit {
         }
       }
     );
+  }
+
+  logout() {
+    localStorage.removeItem('seller');
+    this.route.navigate(['/']);
   }
 
 }
