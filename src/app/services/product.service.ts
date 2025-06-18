@@ -29,4 +29,8 @@ export class ProductService {
   updateProduct(product:Product){
     return this.http.put<Product>(`${this.baseUrl}/${product.id}`, product)
   }
+
+  popularProducts(){
+    return this.http.get<Product[]>(`${this.baseUrl}?_limit=4`);
+  }
 }

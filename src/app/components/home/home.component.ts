@@ -1,12 +1,31 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {NgbCarousel, NgbSlide} from '@ng-bootstrap/ng-bootstrap';
+import {ProductService} from '../../services/product.service';
+import {Product} from '../../models/data-types';
+import {NgForOf} from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [
+    NgbCarousel,
+    NgbSlide,
+    NgForOf
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
+  popularProducts: undefined | Product[];
+
+  constructor(private productSrc : ProductService) {
+  }
+
+  ngOnInit(){
+    this.productSrc.popularProducts().subscribe((data)=>{
+      this.popularProducts = data;
+    })
+  }
+
 
 }

@@ -53,3 +53,16 @@ body{
   }
 }
 
+.carousel-caption{
+  background-color: #0000007d;
+  border-radius: 10px;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon{
+  background-color: black;
+  border-radius: 5px;
+}
+
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
