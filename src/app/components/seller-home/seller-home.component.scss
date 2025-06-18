@@ -1,0 +1,15 @@
+table{
+  text-align: left;
+  color: var(--primary-color);
+  border-collapse: collapse;
+  td,th{
+    border: 1px solid var(--primary-color);
+    padding: 10px;
+    min-width: 160px;
+  }
+}
+
+img{
+  height: 100px;
+  width: 100px;
+}
