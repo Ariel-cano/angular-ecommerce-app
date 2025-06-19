@@ -3,14 +3,22 @@
 
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 body{
   font-family: sans-serif;
 }
 
-.container{
+.container-wrapper{
   margin-left: 5%;
   margin-right: 5%;
+  min-height: 100vh;;
+  display: flex;
+  flex-direction: column;
 }
 
 .common-form{
@@ -61,6 +69,9 @@ body{
 .carousel-control-next-icon, .carousel-control-prev-icon{
   background-color: black;
   border-radius: 5px;
+}
+.outlet {
+  flex: 1 1 auto;
 }
 
 

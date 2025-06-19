@@ -1,0 +1,17 @@
+.footer-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-item{
+  margin: 5px;
+  color: var(--primary-color)
+}
+.footer-mark{
+  text-align: center;
+}
+
+.footer{
+  flex-shrink: 0;
+  margin-top: 20px;
+}
