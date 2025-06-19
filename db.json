@@ -29,6 +29,110 @@
       "name": "john black",
       "password": "nothing1",
       "email": "johnblack@gmail.com"
+    },
+    {
+      "id": "5e6c",
+      "name": "alena",
+      "password": "123456",
+      "email": "alena@gmail.com"
+    },
+    {
+      "id": "a880",
+      "name": "sam",
+      "password": "123",
+      "email": "sam@gmail.com"
+    },
+    {
+      "id": "342f",
+      "name": "samic",
+      "password": "samic",
+      "email": "samic123@gmail.com"
+    },
+    {
+      "id": "d2a0",
+      "name": "",
+      "password": "",
+      "email": ""
+    },
+    {
+      "id": "e114",
+      "name": "123",
+      "password": "123",
+      "email": "123@gmail.com"
+    }
+  ],
+  "products": [
+    {
+      "name": "galaxy ultra 90 pro +",
+      "price": "6000",
+      "category": "mobile",
+      "color": "black",
+      "description": "\ninp\nnnpmom",
+      "image": "https://avatars.mds.yandex.net/i?id=36224ff2bdb32e7ca2d9ffd7c8c9a3a83d25b2d6-5876519-images-thumbs&n=13",
+      "id": "3ec6"
+    },
+    {
+      "id": "8c30",
+      "name": "honor magicbook x 16",
+      "price": "1000",
+      "category": "notebook",
+      "color": "grey",
+      "description": "cool notebook for education",
+      "image": "https://mtscdn.ru/upload/iblock/214/BornH_Silver_Identity-Pictures_Left_HQ_PSD-RGB_20240531_1_.jpg"
+    },
+    {
+      "id": "699a",
+      "name": "honor magicbook x 14",
+      "price": "50090",
+      "category": "notebook",
+      "color": "grey",
+      "description": "wel]flwkfgw\\pgkw\\g",
+      "image": "https://static.baza.farpost.ru/v/1735543824167_bulletin"
+    },
+    {
+      "id": "b719",
+      "name": "samsung galaxy tab",
+      "price": "600",
+      "category": "tablet",
+      "color": "grey",
+      "description": "wfqgvqgfvqvqvqvqvq",
+      "image": "https://main-cdn.sbermegamarket.ru/big2/hlr-system/1663698415/100022775766b4.jpg"
+    },
+    {
+      "id": "b4fe",
+      "name": "AlF",
+      "price": "10000000000",
+      "category": "puppet",
+      "color": "browm",
+      "description": "interesting customer from USA show",
+      "image": "https://i1.sndcdn.com/avatars-000303645732-jft00d-t500x500.jpg"
+    },
+    {
+      "id": "46e9",
+      "name": "lego sw ship",
+      "price": "10000",
+      "category": "lego",
+      "color": "red",
+      "description": "palpatin",
+      "image": "https://avatars.mds.yandex.net/get-mpic/5235128/2a0000018ea5061bed996c2c5e8970313294/orig"
+    },
+    {
+      "name": "lego sw ship 74353",
+      "price": "10000",
+      "category": "lego",
+      "color": "red",
+      "description": "palpatin",
+      "image": "https://avatars.mds.yandex.net/get-mpic/5235128/2a0000018ea5061bed996c2c5e8970313294/orig",
+      "id": "76ac"
+    },
+    {
+      "id": "f775",
+      "name": "lego sw salukami fight",
+      "price": "5000",
+      "category": "lego",
+      "color": "green",
+      "description": "pgflwgwg\nkq\ngkqgq",
+      "image": "https://cdn1.ozone.ru/s3/multimedia-i/6348327198.jpg"
     }
   ]
 }

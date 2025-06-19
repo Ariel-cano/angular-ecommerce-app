@@ -33,4 +33,8 @@ export class ProductService {
   popularProducts(){
     return this.http.get<Product[]>(`${this.baseUrl}?_limit=4`);
   }
+
+  getTrendyProducts(){
+    return this.http.get<Product[]>(`${this.baseUrl}?_limit=8`);
+  }
 }

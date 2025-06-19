@@ -17,6 +17,7 @@ import {NgForOf} from '@angular/common';
 })
 export class HomeComponent implements OnInit{
   popularProducts: undefined | Product[];
+  trendyProducts: undefined | Product[];
 
   constructor(private productSrc : ProductService) {
   }
@@ -24,6 +25,10 @@ export class HomeComponent implements OnInit{
   ngOnInit(){
     this.productSrc.popularProducts().subscribe((data)=>{
       this.popularProducts = data;
+    });
+
+    this.productSrc.getTrendyProducts().subscribe((data)=>{
+      this.trendyProducts = data;
     })
   }
 
