@@ -3,8 +3,17 @@
     <a routerLink="">E-Comm</a>
   </h1>
   <div *ngIf="menuType=='default'" class="nav-search">
-    <input type="text" placeholder="Search Products">
+    <input type="text" placeholder="Search Products"
+           [(ngModel)]="searchTerm"
+           (ngModelChange)="onSearch($event)"
+           (blur)="hideSearch()"
+    >
     <button>Search</button>
+    <ul class="suggested-search" *ngIf="filteredProducts">
+      <li *ngFor="let product of filteredProducts">
+        <a>{{product.name}}</a>
+      </li>
+    </ul>
   </div>
   <div [ngSwitch]="menuType">
     <ul *ngSwitchCase="'default'">

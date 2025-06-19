@@ -1,6 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
-import {NgIf, NgSwitch, NgSwitchCase, TitleCasePipe} from '@angular/common';
+import {NgForOf, NgIf, NgSwitch, NgSwitchCase, TitleCasePipe} from '@angular/common';
+import {debounceTime, distinctUntilChanged, Subject, Subscription, switchMap} from 'rxjs';
+import {Product} from '../../models/data-types';
+import {ProductService} from '../../services/product.service';
+import {FormsModule} from '@angular/forms';
 
 
 @Component({
@@ -11,21 +15,75 @@ import {NgIf, NgSwitch, NgSwitchCase, TitleCasePipe} from '@angular/common';
     RouterLink,
     NgSwitch,
     NgSwitchCase,
-    TitleCasePipe
+    TitleCasePipe,
+    FormsModule,
+    NgForOf
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy{
+  filteredProducts: Product[] | undefined;
+  allProducts: Product[] = [];
+  searchTerm: string = '';
+  searchTerms: Subject<string> = new Subject<string>();
+  searchSubscription?: Subscription;
 
   menuType: string = 'default';
   sellerName: string = '';
 
-  constructor(private route: Router) {
+  constructor(private route: Router, private productSrc:ProductService) {
 
   }
 
   ngOnInit() {
+    this.selectMenuType();
+
+    this.searchSubscription = this.searchTerms.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(term => {
+        this.searchTerm = term;
+        return this.productSrc.getProductList();
+      })
+    ).subscribe({
+      next: products => {
+        this.allProducts = products;
+        this.filterProducts();
+      },
+      error: error => {
+        console.error('Error by search products', error);
+      }
+    });
+  }
+
+  logout() {
+    localStorage.removeItem('seller');
+    this.route.navigate(['/']);
+  }
+
+  onSearch(term: string) {
+    this.searchTerms.next(term);
+  }
+
+  filterProducts() {
+    if (!this.searchTerm) {
+      this.filteredProducts = this.allProducts.slice(0,5);
+    } else {
+      this.filteredProducts = this.allProducts.filter(product =>
+        product.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        product.color.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        product.price.toString().toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        product.description.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        product.category.toLowerCase().includes(this.searchTerm.toLowerCase())
+      ).slice(0,5);
+    }
+  }
+  hideSearch(){
+    this.filteredProducts = undefined;
+  }
+
+  selectMenuType(){
     this.route.events.subscribe((val: any) => {
         if (val.url) {
           if (localStorage.getItem('seller') && val.url.includes('seller')) {
@@ -41,9 +99,9 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  logout() {
-    localStorage.removeItem('seller');
-    this.route.navigate(['/']);
+  ngOnDestroy() {
+    this.searchSubscription?.unsubscribe()
   }
+
 
 }

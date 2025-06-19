@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit{
   popularProducts: undefined | Product[];
   trendyProducts: undefined | Product[];
 
+
   constructor(private productSrc : ProductService) {
   }
 
@@ -30,7 +31,9 @@ export class HomeComponent implements OnInit{
     this.productSrc.getTrendyProducts().subscribe((data)=>{
       this.trendyProducts = data;
     })
+
   }
+
 
 
 }

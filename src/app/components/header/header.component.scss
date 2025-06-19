@@ -50,5 +50,22 @@
     }
   }
 
+}
 
+.suggested-search{
+  position: absolute;
+  top: 40px;
+  z-index: 10;
+  display: list-item !important;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  width: 300px;
+  li{
+    padding: 5px;
+    border: 1px solid #ddd;
+    a{
+      cursor: pointer;
+      color: var(--primary-color);
+    }
+  }
 }
