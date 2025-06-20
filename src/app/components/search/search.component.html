@@ -1,0 +1,15 @@
+<div class="row search-item" *ngFor="let product of searchResult">
+  <div class="col-sm-3">
+    <img src="{{product.image}}" alt="">
+  </div>
+  <div class="col-sm-8 details">
+    <h6>{{product.name}}</h6>
+    <p><b>Price: {{product.price}}</b></p>
+    <p><span>Color: {{product.color}}</span><span>Category: {{product.category}}</span></p>
+    <p>{{product.description}}I</p>
+  </div>
+</div>
+<div *ngIf="!searchResult?.length" class="wrong-request-container">
+  <h4>nothing was found on the request "{{query}}"</h4>
+  <p>Try to search in a different way or shorten the query.</p>
+</div>

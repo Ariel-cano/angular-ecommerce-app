@@ -6,6 +6,7 @@ import {SellerHomeComponent} from './components/seller-home/seller-home.componen
 import {authGuard} from './guards/auth.guard';
 import {SellerAddProductComponent} from './components/seller-add-product/seller-add-product.component';
 import {SellerUpdateProductComponent} from './components/seller-update-product/seller-update-product.component';
+import {SearchComponent} from './components/search/search.component';
 
 export const routes: Routes = [
   {component: HomeComponent, path: ''},
@@ -13,5 +14,6 @@ export const routes: Routes = [
   {component: SellerHomeComponent, path: 'seller-home', canActivate: [authGuard]},
   {component: SellerAddProductComponent, path: 'seller-add-product', canActivate: [authGuard]},
   {component: SellerUpdateProductComponent, path: 'seller-update-product/:id', canActivate: [authGuard]},
+  {component: SearchComponent, path: 'search/:query'},
   {component: NotFoundComponent, path: '**'},
 ];

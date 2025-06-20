@@ -7,8 +7,9 @@
            [(ngModel)]="searchTerm"
            (ngModelChange)="onSearch($event)"
            (blur)="hideSearch()"
+           #searchInput
     >
-    <button>Search</button>
+    <button (click)="submitSearch(searchInput.value)">Search</button>
     <ul class="suggested-search" *ngIf="filteredProducts">
       <li *ngFor="let product of filteredProducts">
         <a>{{product.name}}</a>

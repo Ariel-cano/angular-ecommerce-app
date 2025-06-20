@@ -82,6 +82,11 @@ export class HeaderComponent implements OnInit, OnDestroy{
   hideSearch(){
     this.filteredProducts = undefined;
   }
+  submitSearch(value: string){
+    if(value){
+      this.route.navigate([`search/${value}`]);
+    }
+  }
 
   selectMenuType(){
     this.route.events.subscribe((val: any) => {
