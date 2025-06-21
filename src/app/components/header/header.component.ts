@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Router, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {NgForOf, NgIf, NgSwitch, NgSwitchCase, TitleCasePipe} from '@angular/common';
 import {debounceTime, distinctUntilChanged, Subject, Subscription, switchMap} from 'rxjs';
 import {Product} from '../../models/data-types';
@@ -23,6 +23,7 @@ import {FormsModule} from '@angular/forms';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit, OnDestroy{
+
   filteredProducts: Product[] | undefined;
   allProducts: Product[] = [];
   searchTerm: string = '';
@@ -31,6 +32,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
   menuType: string = 'default';
   sellerName: string = '';
+  productId : string | null = null
 
   constructor(private route: Router, private productSrc:ProductService) {
 
@@ -38,7 +40,6 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
   ngOnInit() {
     this.selectMenuType();
-
     this.searchSubscription = this.searchTerms.pipe(
       debounceTime(300),
       distinctUntilChanged(),
@@ -103,10 +104,14 @@ export class HeaderComponent implements OnInit, OnDestroy{
       }
     );
   }
+  redirectToDetails(id: string){
+    this.route.navigate([`/details/${id}`]);
+  }
 
   ngOnDestroy() {
     this.searchSubscription?.unsubscribe()
   }
+
 
 
 }

@@ -3,15 +3,17 @@ import {NgbCarousel, NgbSlide} from '@ng-bootstrap/ng-bootstrap';
 import {ProductService} from '../../services/product.service';
 import {Product} from '../../models/data-types';
 import {NgForOf} from '@angular/common';
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [
-    NgbCarousel,
-    NgbSlide,
-    NgForOf
-  ],
+    imports: [
+        NgbCarousel,
+        NgbSlide,
+        NgForOf,
+        RouterLink
+    ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

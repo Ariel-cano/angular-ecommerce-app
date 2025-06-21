@@ -15,16 +15,25 @@ import {NgIf} from '@angular/common';
 })
 export class ProductDetailsComponent implements OnInit{
   productData : undefined | Product;
+  productQuantity: number = 1;
   constructor(private activatedRoute: ActivatedRoute, private productSrc: ProductService) {
   }
 
   ngOnInit() {
-    let productId = this.activatedRoute.snapshot.paramMap.get('productId');
-    productId && this.productSrc.getProductById(productId).subscribe((data)=>{
-      this.productData = data;
-    })
+    this.activatedRoute.paramMap.subscribe(params => {
+      let productId = this.activatedRoute.snapshot.paramMap.get('productId');
+      productId && this.productSrc.getProductById(productId).subscribe((data)=>{
+        this.productData = data;
+      })
+    });
+  }
 
-
+  handleQuantity(value : string){
+    if (this.productQuantity < 20 && value === 'plus'){
+      this.productQuantity +=1;
+    } else if (this.productQuantity > 1 && value === 'min'){
+      this.productQuantity -=1;
+    }
   }
 
 
