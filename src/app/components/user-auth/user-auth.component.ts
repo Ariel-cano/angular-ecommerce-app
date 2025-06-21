@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {signUp} from '../../models/data-types';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-user-auth',
@@ -12,9 +13,9 @@ import {signUp} from '../../models/data-types';
   styleUrl: './user-auth.component.scss'
 })
 export class UserAuthComponent {
-  constructor() {
+  constructor(private userSrc: UserService) {
   }
   signUp(data: signUp){
-    console.log(data);
+    this.userSrc.userSignUp(data);
   }
 }
