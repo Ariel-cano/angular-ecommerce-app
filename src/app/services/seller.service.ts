@@ -16,7 +16,6 @@ export class SellerService {
 
   userSignUp(data: signUp){
     return this.http.post(this.baseUrl, data, {observe: 'response'}).subscribe((result)=>{
-      console.warn(result);
       if (result){
         this.isSellerLoggedIn.set(true);
         localStorage.setItem('seller', JSON.stringify(result.body));
@@ -33,7 +32,6 @@ export class SellerService {
   }
 
   userLogin(data : login){
-    console.warn(data);
     this.http.get(`${this.baseUrl}?email=${data.email}&password=${data.password}`,{observe: 'response'}).subscribe((result: any)=>{
       if (result && result.body && result.body.length===1){
         localStorage.setItem('seller', JSON.stringify(result.body));

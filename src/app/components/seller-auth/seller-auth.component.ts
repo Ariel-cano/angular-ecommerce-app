@@ -31,7 +31,6 @@ export class SellerAuthComponent implements OnInit{
   }
 
   signUp(data: signUp){
-    console.warn(data);
     this.seller.userSignUp(data);
   }
   login(data: signUp){

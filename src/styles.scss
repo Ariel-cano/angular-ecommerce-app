@@ -79,6 +79,16 @@ body{
   cursor: pointer;
 }
 
+.invalid-input{
+  color: red;
+  font-size: 12px;
+  margin-top: -20px;
+}
+
+button:disabled{
+  cursor: not-allowed;
+}
+
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
