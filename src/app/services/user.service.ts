@@ -16,8 +16,13 @@ export class UserService {
       if (result){
         localStorage.setItem('user', JSON.stringify(result.body));
         this.router.navigate(['/']);
-
       }
     })
+  }
+
+  userAuthReload(){
+    if(localStorage.getItem('user')){
+      this.router.navigate(['/'])
+    }
   }
 }

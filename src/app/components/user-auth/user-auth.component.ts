@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {signUp} from '../../models/data-types';
 import {UserService} from '../../services/user.service';
@@ -12,10 +12,14 @@ import {UserService} from '../../services/user.service';
   templateUrl: './user-auth.component.html',
   styleUrl: './user-auth.component.scss'
 })
-export class UserAuthComponent {
+export class UserAuthComponent implements OnInit{
   constructor(private userSrc: UserService) {
   }
   signUp(data: signUp){
     this.userSrc.userSignUp(data);
+  }
+
+  ngOnInit(): void {
+    this.userSrc.userAuthReload();
   }
 }

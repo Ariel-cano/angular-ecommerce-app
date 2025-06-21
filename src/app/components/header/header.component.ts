@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {NgForOf, NgIf, NgSwitch, NgSwitchCase, TitleCasePipe} from '@angular/common';
 import {debounceTime, distinctUntilChanged, Subject, Subscription, switchMap} from 'rxjs';
 import {Product} from '../../models/data-types';
@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
   menuType: string = 'default';
   sellerName: string = '';
+  userName: string = '';
   productId : string | null = null
 
   constructor(private route: Router, private productSrc:ProductService) {
@@ -97,7 +98,13 @@ export class HeaderComponent implements OnInit, OnDestroy{
             let sellerData = sellerStore && JSON.parse(sellerStore)[0];
             this.sellerName = sellerData.name;
             this.menuType = 'seller';
-          } else {
+          }else if(localStorage.getItem('user')){
+            let userStore = localStorage.getItem('user');
+            let userData = userStore && JSON.parse(userStore);
+            this.userName = userData.name;
+            this.menuType = 'user';
+          }
+          else {
             this.menuType = 'default';
           }
         }
@@ -106,6 +113,10 @@ export class HeaderComponent implements OnInit, OnDestroy{
   }
   redirectToDetails(id: string){
     this.route.navigate([`/details/${id}`]);
+  }
+  userlogout(){
+    localStorage.removeItem('user');
+    this.route.navigate(['/user-auth']);
   }
 
   ngOnDestroy() {
