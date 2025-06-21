@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import {ProductService} from '../../services/product.service';
 import {Product} from '../../models/data-types';
 import {NgForOf, NgIf} from '@angular/common';
@@ -9,7 +9,8 @@ import {NgForOf, NgIf} from '@angular/common';
   standalone: true,
   imports: [
     NgForOf,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'

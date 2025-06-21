@@ -74,6 +74,11 @@ body{
   flex: 1 1 auto;
 }
 
+.link{
+  text-decoration: none;
+  cursor: pointer;
+}
+
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
