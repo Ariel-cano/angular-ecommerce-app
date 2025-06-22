@@ -16,14 +16,23 @@ import {NgIf} from '@angular/common';
 export class ProductDetailsComponent implements OnInit{
   productData : undefined | Product;
   productQuantity: number = 1;
+  removeCart = false;
   constructor(private activatedRoute: ActivatedRoute, private productSrc: ProductService) {
   }
 
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe(params => {
+    this.activatedRoute.paramMap.subscribe(() => {
       let productId = this.activatedRoute.snapshot.paramMap.get('productId');
       productId && this.productSrc.getProductById(productId).subscribe((data)=>{
         this.productData = data;
+        let cartData = localStorage.getItem('localCart')
+        if (productId && cartData){
+          let items = JSON.parse(cartData);
+          items = items.filter((item : Product)=>{
+            return productId === item.id.toString();
+          });
+          this.removeCart = !!items.length;
+        }
       })
     });
   }
@@ -41,8 +50,13 @@ export class ProductDetailsComponent implements OnInit{
       this.productData.quantity = this.productQuantity;
       if (!localStorage.getItem('user')){
         this.productSrc.localAddToCart(this.productData);
+        this.removeCart = true;
       }
     }
+  }
+  removeFromCart(productId: string){
+    this.productSrc.removeProductFromCart(productId);
+    this.removeCart = false;
   }
 
 

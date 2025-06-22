@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Product} from '../models/data-types';
 
@@ -6,7 +6,8 @@ import {Product} from '../models/data-types';
   providedIn: 'root'
 })
 export class ProductService {
-  baseUrl = 'http://localhost:3000/products'
+  baseUrl = 'http://localhost:3000/products';
+  cartData = signal<number>(0)
 
   constructor(private http : HttpClient) { }
 
@@ -50,6 +51,19 @@ export class ProductService {
       cartData = JSON.parse(localCart);
       cartData.push(data);
       localStorage.setItem('localCart', JSON.stringify(cartData));
+      this.cartData.set(cartData.length);
+    }
+  }
+
+  removeProductFromCart(productId: string){
+    let cartData = localStorage.getItem('localCart');
+    if (cartData){
+      let items: Product[] = JSON.parse(cartData);
+      items = items.filter((item: Product)=>{
+        return productId !== item.id
+      });
+      localStorage.setItem('localCart', JSON.stringify(items));
+      this.cartData.set(items.length);
     }
   }
 

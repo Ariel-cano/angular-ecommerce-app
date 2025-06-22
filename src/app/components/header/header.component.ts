@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, signal} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {NgForOf, NgIf, NgSwitch, NgSwitchCase, TitleCasePipe} from '@angular/common';
 import {debounceTime, distinctUntilChanged, Subject, Subscription, switchMap} from 'rxjs';
@@ -29,13 +29,12 @@ export class HeaderComponent implements OnInit, OnDestroy{
   searchTerm: string = '';
   searchTerms: Subject<string> = new Subject<string>();
   searchSubscription?: Subscription;
-
   menuType: string = 'default';
   sellerName: string = '';
   userName: string = '';
   productId : string | null = null
 
-  constructor(private route: Router, private productSrc:ProductService) {
+  constructor(private route: Router, protected productSrc:ProductService) {
 
   }
 
@@ -57,6 +56,11 @@ export class HeaderComponent implements OnInit, OnDestroy{
         console.error('Error by search products', error);
       }
     });
+    let carData = localStorage.getItem('localCart');
+    if (carData){
+      this.productSrc.cartData.set((JSON.parse(carData)).length);
+    }
+
   }
 
   logout() {
