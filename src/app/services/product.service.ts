@@ -41,5 +41,17 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.baseUrl}?q=${query}`)
   }
 
+  localAddToCart(data: Product){
+    let cartData = [];
+    let localCart = localStorage.getItem('localCart');
+    if (!localCart){
+      localStorage.setItem('localCart', JSON.stringify([data]));
+    }else{
+      cartData = JSON.parse(localCart);
+      cartData.push(data);
+      localStorage.setItem('localCart', JSON.stringify(cartData));
+    }
+  }
+
 
 }
