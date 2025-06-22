@@ -30,7 +30,7 @@ export interface cart{
   id: string | undefined,
   quantity: undefined | number,
   productId: string,
-  userId: number
+  userId: string
 }
 
 
