@@ -66,6 +66,8 @@ export class HeaderComponent implements OnInit, OnDestroy{
   logout() {
     localStorage.removeItem('seller');
     this.route.navigate(['/']);
+    this.productSrc.cartInfo.emit([]);
+    this.productSrc.cartData.set(0);
   }
 
   onSearch(term: string) {

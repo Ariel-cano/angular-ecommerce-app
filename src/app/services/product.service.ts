@@ -1,4 +1,4 @@
-import {Injectable, signal} from '@angular/core';
+import {EventEmitter, Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {cart, Product} from '../models/data-types';
 
@@ -7,7 +7,8 @@ import {cart, Product} from '../models/data-types';
 })
 export class ProductService {
   baseUrl = 'http://localhost:3000/products';
-  cartData = signal<number>(0)
+  cartData = signal<number>(0);
+  cartInfo = new EventEmitter<Product[] | []>()
 
   constructor(private http : HttpClient) { }
 
@@ -53,6 +54,7 @@ export class ProductService {
       cartData.push(data);
       localStorage.setItem('localCart', JSON.stringify(cartData));
       this.cartData.set(cartData.length);
+      this.cartInfo.emit(cartData)
     }
   }
 
@@ -65,11 +67,22 @@ export class ProductService {
       });
       localStorage.setItem('localCart', JSON.stringify(items));
       this.cartData.set(items.length);
+      this.cartInfo.emit(items);
     }
   }
 
   addToCart(cardData : cart){
     return this.http.post('http://localhost:3000/cart', cardData);
+  }
+
+  getCartList(userId : string){
+    return this.http.get<Product[]>(`http://localhost:3000/cart?userId=`+userId, {observe:"response"}).subscribe((result)=>{
+      if(result && result.body){
+        console.log(result);
+        this.cartData.set(result.body.length);
+        this.cartInfo.emit(result.body)
+      }
+    });
   }
 
 

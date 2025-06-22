@@ -23,17 +23,36 @@ export class ProductDetailsComponent implements OnInit{
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(() => {
       let productId = this.activatedRoute.snapshot.paramMap.get('productId');
-      productId && this.productSrc.getProductById(productId).subscribe((data)=>{
+      if (!productId) return;
+
+      this.productSrc.getProductById(productId).subscribe((data) => {
         this.productData = data;
-        let cartData = localStorage.getItem('localCart')
-        if (productId && cartData){
-          let items = JSON.parse(cartData);
-          items = items.filter((item : Product)=>{
-            return productId === item.id.toString();
+        this.removeCart = false;
+
+        let user = localStorage.getItem('user');
+        if (user) {
+          let userId = JSON.parse(user).id;
+          this.productSrc.getCartList(userId);
+          this.productSrc.cartInfo.subscribe((result) => {
+            let item = result.find(
+              (item: Product) =>
+                productId?.toString() ===
+                (item.productId ? item.productId.toString() : item.id.toString())
+            );
+            this.removeCart = !!item;
           });
-          this.removeCart = !!items.length;
+        } else {
+          // Проверка локальной корзины
+          let cartData = localStorage.getItem('localCart');
+          if (cartData) {
+            let items = JSON.parse(cartData);
+            let item = items.find(
+              (item: Product) => productId === item.id?.toString()
+            );
+            this.removeCart = !!item;
+          }
         }
-      })
+      });
     });
   }
 
@@ -62,7 +81,8 @@ export class ProductDetailsComponent implements OnInit{
         delete cardData.id;
         this.productSrc.addToCart(cardData).subscribe((result)=>{
           if (result){
-            alert('Product is added in the cart');
+            this.productSrc.getCartList(userId);
+            this.removeCart=true;
           }
         });
       }
