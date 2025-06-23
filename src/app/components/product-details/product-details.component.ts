@@ -17,6 +17,7 @@ export class ProductDetailsComponent implements OnInit{
   productData : undefined | Product;
   productQuantity: number = 1;
   removeCart = false;
+  cartData: Product | undefined;
   constructor(private activatedRoute: ActivatedRoute, private productSrc: ProductService) {
   }
 
@@ -34,22 +35,26 @@ export class ProductDetailsComponent implements OnInit{
           let userId = JSON.parse(user).id;
           this.productSrc.getCartList(userId);
           this.productSrc.cartInfo.subscribe((result) => {
-            let item = result.find(
+            let item = result.filter(
               (item: Product) =>
-                productId?.toString() ===
-                (item.productId ? item.productId.toString() : item.id.toString())
-            );
-            this.removeCart = !!item;
+                productId?.toString() === item.productId?.toString());
+            if (item.length){
+              this.cartData = item[0];
+              this.removeCart = true;
+            }
           });
         } else {
-          // Проверка локальной корзины
           let cartData = localStorage.getItem('localCart');
           if (cartData) {
             let items = JSON.parse(cartData);
-            let item = items.find(
+            items = items.filter(
               (item: Product) => productId === item.id?.toString()
             );
-            this.removeCart = !!item;
+            if (items.length){
+              this.removeCart = true;
+            }else{
+              this.removeCart = false;
+            }
           }
         }
       });
@@ -89,8 +94,18 @@ export class ProductDetailsComponent implements OnInit{
     }
   }
   removeFromCart(productId: string){
-    this.productSrc.removeProductFromCart(productId);
-    this.removeCart = false;
+    if (!localStorage.getItem('user')){
+      this.productSrc.removeProductFromCart(productId);
+      this.removeCart = false;
+    }else{
+      this.cartData && this.productSrc.removeToCart(this.cartData.id).subscribe((result)=>{
+        let user = localStorage.getItem('user');
+        let userId = user && JSON.parse(user).id;
+        this.productSrc.getCartList(userId);
+      })
+      this.removeCart = false;
+    }
+
   }
 
 

@@ -109,6 +109,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
             let userData = userStore && JSON.parse(userStore);
             this.userName = userData.name;
             this.menuType = 'user';
+            this.productSrc.getCartList(userData.id);
           }
           else {
             this.menuType = 'default';

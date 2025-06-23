@@ -78,11 +78,14 @@ export class ProductService {
   getCartList(userId : string){
     return this.http.get<Product[]>(`http://localhost:3000/cart?userId=`+userId, {observe:"response"}).subscribe((result)=>{
       if(result && result.body){
-        console.log(result);
         this.cartData.set(result.body.length);
         this.cartInfo.emit(result.body)
       }
     });
+  }
+
+  removeToCart(cartId: string){
+    return this.http.delete(`http://localhost:3000/cart/${cartId}`);
   }
 
 
