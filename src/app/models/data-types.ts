@@ -42,4 +42,18 @@ export interface priceSummary{
   total: number
 }
 
+export interface contactData{
+  email: string,
+  address: string,
+  contact: string
+}
+
+export interface order{
+  email: string,
+  address: string,
+  contact: string,
+  userId: string,
+  totalPrice: number
+}
+
 
