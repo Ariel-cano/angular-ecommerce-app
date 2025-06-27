@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, signal} from '@angular/core';
+import {Component, effect, OnDestroy, OnInit} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {NgForOf, NgIf, NgSwitch, NgSwitchCase, TitleCasePipe} from '@angular/common';
 import {debounceTime, distinctUntilChanged, Subject, Subscription, switchMap} from 'rxjs';
@@ -20,7 +20,7 @@ import {FormsModule} from '@angular/forms';
     NgForOf
   ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit, OnDestroy{
 
@@ -35,7 +35,9 @@ export class HeaderComponent implements OnInit, OnDestroy{
   productId : string | null = null
 
   constructor(private route: Router, protected productSrc:ProductService) {
-
+    effect(() => {
+      this.productSrc.cartData();
+    });
   }
 
   ngOnInit() {
@@ -56,18 +58,17 @@ export class HeaderComponent implements OnInit, OnDestroy{
         console.error('Error by search products', error);
       }
     });
-    let carData = localStorage.getItem('localCart');
-    if (carData){
-      this.productSrc.cartData.set((JSON.parse(carData)).length);
+    let cartData = localStorage.getItem('localCart');
+    if (cartData){
+      this.productSrc.cartData.set((JSON.parse(cartData)).length);
     }
+
 
   }
 
   logout() {
     localStorage.removeItem('seller');
     this.route.navigate(['/']);
-    this.productSrc.cartInfo.emit([]);
-    this.productSrc.cartData.set(0);
   }
 
   onSearch(term: string) {
@@ -124,6 +125,9 @@ export class HeaderComponent implements OnInit, OnDestroy{
   userlogout(){
     localStorage.removeItem('user');
     this.route.navigate(['/user-auth']);
+    this.productSrc.cartData.set(0);
+
+
   }
 
   ngOnDestroy() {

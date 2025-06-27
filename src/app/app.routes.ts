@@ -9,6 +9,7 @@ import {SellerUpdateProductComponent} from './components/seller-update-product/s
 import {SearchComponent} from './components/search/search.component';
 import {ProductDetailsComponent} from './components/product-details/product-details.component';
 import {UserAuthComponent} from './components/user-auth/user-auth.component';
+import {CartPageComponent} from './components/cart-page/cart-page.component';
 
 export const routes: Routes = [
   {component: HomeComponent, path: ''},
@@ -19,5 +20,6 @@ export const routes: Routes = [
   {component: SearchComponent, path: 'search/:query'},
   {component: ProductDetailsComponent, path: 'details/:productId'},
   {component: UserAuthComponent, path: 'user-auth'},
+  {component: CartPageComponent, path:'cart-page'},
   {component: NotFoundComponent, path: '**'},
 ];
