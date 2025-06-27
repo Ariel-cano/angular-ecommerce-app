@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../../services/product.service';
 import {cart, priceSummary} from '../../models/data-types';
 import {NgForOf} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-cart-page',
@@ -21,7 +22,7 @@ export class CartPageComponent implements OnInit{
     delivery: 0,
     total: 0
   }
-  constructor(private productSrc:ProductService) {
+  constructor(private productSrc:ProductService, private router: Router) {
   }
   ngOnInit() {
     this.productSrc.currentCart().subscribe((result)=>{
@@ -50,5 +51,9 @@ export class CartPageComponent implements OnInit{
       }
     })
   }
+  checkout(){
+    this.router.navigate(['/checkout']);
+  }
+
 
 }
