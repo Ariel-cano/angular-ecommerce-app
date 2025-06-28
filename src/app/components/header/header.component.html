@@ -2,7 +2,7 @@
   <h1>
     <a routerLink="">E-Comm</a>
   </h1>
-  <div *ngIf="menuType=='default'" class="nav-search">
+  <div *ngIf="(menuType=='default') || (menuType=='user')" class="nav-search">
     <input type="text" placeholder="Search Products"
            [(ngModel)]="searchTerm"
            (ngModelChange)="onSearch($event)"
