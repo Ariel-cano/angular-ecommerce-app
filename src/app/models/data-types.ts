@@ -53,7 +53,8 @@ export interface order{
   address: string,
   contact: string,
   userId: string,
-  totalPrice: number
+  totalPrice: number,
+  id: number | undefined
 }
 
 

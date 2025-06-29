@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {ProductService} from '../../services/product.service';
-import {contactData, order} from '../../models/data-types';
+import {cart, contactData, order} from '../../models/data-types';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -13,9 +14,11 @@ import {contactData, order} from '../../models/data-types';
   styleUrl: './checkout.component.scss'
 })
 export class CheckoutComponent implements OnInit{
-  constructor(private productSrc: ProductService) {
+  constructor(private productSrc: ProductService, private router: Router) {
   }
+  cartData: cart[] | undefined;
   totalPrice: number | undefined;
+  orderMsg: string | undefined;
   orderNow(data: contactData){
     let user = localStorage.getItem('user');
     let userId = user && JSON.parse(user).id;
@@ -23,11 +26,21 @@ export class CheckoutComponent implements OnInit{
       let orderData : order={
         ...data,
         totalPrice:this.totalPrice,
-        userId
+        userId,
+        id: undefined
       }
+      this.cartData?.forEach((item)=>{
+        setTimeout(()=>{
+          item.id && this.productSrc.deleteCartItems(item.id);
+        },600)
+      })
       this.productSrc.orderNow(orderData).subscribe((result)=>{
         if (result){
-          alert('order placed');
+          this.orderMsg="Order has been placed"
+          setTimeout(()=>{
+            this.orderMsg = undefined;
+            this.router.navigate(['/my-orders']);
+          },3000)
         }
       })
     }
@@ -37,6 +50,7 @@ export class CheckoutComponent implements OnInit{
     this.productSrc.currentCart().subscribe((result)=>{
       if (result){
         let price: number = 0;
+        this.cartData = result;
         result.forEach((item)=> {
           if (item.quantity) {
             price = +price + (+item.price * +item.quantity)

@@ -11,6 +11,7 @@ import {ProductDetailsComponent} from './components/product-details/product-deta
 import {UserAuthComponent} from './components/user-auth/user-auth.component';
 import {CartPageComponent} from './components/cart-page/cart-page.component';
 import {CheckoutComponent} from './components/checkout/checkout.component';
+import {MyOrdersComponent} from './components/my-orders/my-orders.component';
 
 export const routes: Routes = [
   {component: HomeComponent, path: ''},
@@ -23,5 +24,6 @@ export const routes: Routes = [
   {component: UserAuthComponent, path: 'user-auth'},
   {component: CartPageComponent, path:'cart-page'},
   {component: CheckoutComponent, path: 'checkout'},
+  {component: MyOrdersComponent, path: 'my-orders'},
   {component: NotFoundComponent, path: '**'},
 ];
