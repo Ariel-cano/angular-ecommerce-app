@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbCarousel, NgbSlide} from '@ng-bootstrap/ng-bootstrap';
 import {ProductService} from '../../services/product.service';
-import {Product} from '../../models/data-types';
+import {cart, Product} from '../../models/data-types';
 import {NgForOf} from '@angular/common';
 import {RouterLink} from "@angular/router";
 
@@ -29,12 +29,12 @@ export class HomeComponent implements OnInit{
     this.productSrc.popularProducts().subscribe((data)=>{
       this.popularProducts = data;
     });
-
     this.productSrc.getTrendyProducts().subscribe((data)=>{
       this.trendyProducts = data;
     })
-
   }
+
+  
 
 
 
