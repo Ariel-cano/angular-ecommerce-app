@@ -29,7 +29,7 @@
       <li><a>{{userName | titlecase}}</a></li>
       <li><a (click)="userlogout()">Logout</a></li>
       <li><a routerLink="my-orders">My orders</a></li>
-      <li><a routerLink="cart-page">Cart({{productSrc.cartData()}})</a></li>
+      <li><a [routerLink]="productSrc.cartData() > 0 ? 'cart-page' : null">Cart({{productSrc.cartData()}})</a></li>
     </ul>
     <ul *ngSwitchCase="'seller'">
       <li><a routerLink="seller-add-product">Add Product</a></li>
