@@ -16,7 +16,7 @@
   <div class="row">
     <div class="col-sm-3" *ngFor="let item of trendyProducts">
       <div class="product-item">
-        <img src="{{item.image}}" alt="product">
+        <a class="link" routerLink="/details/{{item.id}}"><img src="{{item.image}}" alt="product"></a>
         <div class="product-details">
           <h6 class="name-head">{{item.name}}</h6>
           <div class="product-price">
@@ -28,7 +28,8 @@
         </div>
         <div class="product-footer">
           <a class="link" routerLink="/details/{{item.id}}"> View Details</a>
-          <a href="">Add to Cart</a>
+          <button *ngIf="!removeCart" class="form-button" (click)="addToCart(item.id)">Add to Cart</button>
+<!--          <button *ngIf="removeCart" class="form-button" (click)="removeFromCart(productData.id)">Delete from Cart</button>-->
         </div>
       </div>
     </div>
