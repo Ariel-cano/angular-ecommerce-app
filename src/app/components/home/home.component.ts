@@ -1,69 +1,138 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Router, RouterLink} from '@angular/router';
+import { ProductService } from '../../services/product.service';
+import { cart, Product } from '../../models/data-types';
+import { Subscription } from 'rxjs';
 import {NgbCarousel, NgbSlide} from '@ng-bootstrap/ng-bootstrap';
-import {ProductService} from '../../services/product.service';
-import {cart, Product} from '../../models/data-types';
 import {NgForOf, NgIf} from '@angular/common';
-import {Router, RouterLink} from "@angular/router";
-import {of, switchMap, tap} from 'rxjs';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [
-    NgbCarousel,
-    NgbSlide,
-    NgForOf,
-    RouterLink,
-    NgIf
-  ],
   templateUrl: './home.component.html',
+  imports: [
+    RouterLink,
+    NgbCarousel,
+    NgIf,
+    NgbSlide,
+    NgForOf
+  ],
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit{
-  popularProducts: undefined | Product[];
-  trendyProducts: undefined | Product[];
-  removeCart = false;
+export class HomeComponent implements OnInit, OnDestroy {
+  popularProducts: Product[] = [];
+  trendyProducts: Product[] = [];
+  removeCart: { [productId: string]: boolean } = {};
+  cartData: { [productId: string]: Product | undefined } = {};
+  private cartSub?: Subscription;
 
+  constructor(
+    private productSrc: ProductService,
+    private router: Router
+  ) {}
 
-  constructor(private productSrc : ProductService, private router: Router) {
-  }
-
-  ngOnInit(){
-    this.productSrc.popularProducts().subscribe((data)=>{
-      this.popularProducts = data;
+  ngOnInit() {
+    this.productSrc.popularProducts().subscribe((products) => {
+      this.popularProducts = products || [];
+      this.updateCartStates();
     });
-    this.productSrc.getTrendyProducts().subscribe((data)=>{
-      this.trendyProducts = data;
-    })
+    this.productSrc.getTrendyProducts().subscribe((products) => {
+      this.trendyProducts = products || [];
+      this.updateCartStates();
+    });
 
+    if (this.isUserLoggedIn()) {
+      const userId = this.getUserId();
+      if (userId) {
+        this.productSrc.getCartList(userId);
+        this.cartSub = this.productSrc.cartInfo.subscribe((cartList: Product[]) => {
+          (this.productSrc as any).currentCartList = cartList;
+          this.updateCartStates();
+        });
+      }
+    }
+    this.cartSub = this.productSrc.cartInfo.subscribe(() => {
+      this.updateCartStates();
+    });
   }
 
-
-  addToCart(productId: string) {
-    this.productSrc.getProductById(productId)
-      .pipe(
-        switchMap((product) => {
-          if (!product) return of(null);
-
-          product.quantity = 1;
-          if (this.isUserLoggedIn()) {
-            return this.handleAddToUserCart(product);
-          } else {
-            this.handleAddToLocalCart(product);
-            return of(null);
-          }
-        }),
-        tap(() =>{
-          if (this.isUserLoggedIn()){
-            this.router.navigate(['/cart-page']);
-          }else{
-            this.router.navigate(['/user-auth']);
-            alert('to go to the shopping cart, log in or register')
-          }
-        })
-      )
-      .subscribe();
+  ngOnDestroy() {
+    this.cartSub?.unsubscribe();
   }
+
+  private updateCartStates() {
+    const allProducts = [
+      ...(this.popularProducts || []),
+      ...(this.trendyProducts || [])
+    ];
+
+    if (this.isUserLoggedIn()) {
+      const cartList: Product[] = (this.productSrc as any).currentCartList || [];
+      allProducts.forEach(product => {
+        const item = cartList.find(i => product.id?.toString() === i.productId?.toString());
+        this.cartData[product.id!] = item;
+        this.removeCart[product.id!] = !!item;
+      });
+    } else {
+      const cartDataLocal = localStorage.getItem('localCart');
+      const items = cartDataLocal ? JSON.parse(cartDataLocal) : [];
+      allProducts.forEach(product => {
+        const item = items.find((i: { id: { toString: () => string; }; }) => product.id?.toString() === i.id?.toString());
+        this.cartData[product.id!] = item;
+        this.removeCart[product.id!] = !!item;
+      });
+    }
+  }
+
+  addToCart(product: Product) {
+    if (!product) return;
+    if (this.isUserLoggedIn()) {
+      const userId = this.getUserId();
+      if (!userId) return;
+
+      const cartList: Product[] = (this.productSrc as any).currentCartList || [];
+      const item = cartList.find(i => product.id?.toString() === i.productId?.toString());
+      if (item) return;
+
+      const cartItem: cart = {
+        ...product,
+        productId: product.id,
+        userId,
+        quantity: 1
+      };
+      delete cartItem.id;
+      this.productSrc.addToCart(cartItem).subscribe(() => {
+        this.productSrc.getCartList(userId);
+        this.router.navigate(['/cart-page']);
+      });
+    } else {
+      product.quantity = 1;
+      this.productSrc.localAddToCart(product);
+      this.updateCartStates();
+      alert('to go to the shopping cart, log in or register');
+      this.router.navigate(['/user-auth']);
+    }
+  }
+
+  removeFromCart(product: Product) {
+    if (!product) return;
+
+    if (this.isUserLoggedIn()) {
+      const cartItem = this.cartData[product.id!];
+      if (cartItem && cartItem.id) {
+        this.productSrc.removeToCart(cartItem.id).subscribe(() => {
+          const userId = this.getUserId();
+          if (userId) {
+            this.productSrc.getCartList(userId);
+          }
+        });
+      }
+    } else {
+      this.productSrc.removeProductFromCart(product.id);
+      setTimeout(() => this.updateCartStates(), 10);
+    }
+  }
+
 
   private isUserLoggedIn(): boolean {
     return !!localStorage.getItem('user');
@@ -73,33 +142,4 @@ export class HomeComponent implements OnInit{
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user).id : null;
   }
-
-  private handleAddToLocalCart(product: Product) {
-    this.productSrc.localAddToCart(product);
-    this.removeCart = true;
-  }
-
-  private handleAddToUserCart(product: Product) {
-    const userId = this.getUserId();
-    if (!userId) return of(null);
-
-    const cartItem: cart = {
-      ...product,
-      productId: product.id,
-      userId
-    };
-    delete cartItem.id;
-
-    return this.productSrc.addToCart(cartItem).pipe(
-      tap((result) => {
-        if (result) {
-          this.productSrc.getCartList(userId);
-          this.removeCart = true;
-        }
-      })
-    );
-  }
-
-
-
 }
