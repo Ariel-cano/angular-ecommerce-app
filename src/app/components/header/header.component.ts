@@ -105,6 +105,9 @@ export class HeaderComponent implements OnInit, OnDestroy{
       ).slice(0,5);
     }
   }
+  pleaseReg(){
+    alert('to access the shopping cart, log in or register');
+  }
   hideSearch(){
     this.filteredProducts = undefined;
   }

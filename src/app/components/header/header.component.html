@@ -30,9 +30,9 @@
         <fa-icon [icon]="signUpIcon" class="icon" routerLink="user-auth"></fa-icon>
         <a routerLink="user-auth">Login/Sign-up</a>
       </div>
-      <div class="icon-label">
+      <div class="icon-label" (click)="pleaseReg()">
         <fa-icon [icon]="cartIcon" class="icon" routerLink="user-auth"></fa-icon>
-        <a href="#">Cart({{productSrc.cartData()}})</a>
+        <a href="user-auth">Cart({{productSrc.cartData()}})</a>
       </div>
     </ul>
     <ul *ngSwitchCase="'user'">
