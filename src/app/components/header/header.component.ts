@@ -5,6 +5,13 @@ import {debounceTime, distinctUntilChanged, Subject, Subscription, switchMap} fr
 import {Product} from '../../models/data-types';
 import {ProductService} from '../../services/product.service';
 import {FormsModule} from '@angular/forms';
+import {faMoneyCheckDollar} from '@fortawesome/free-solid-svg-icons/faMoneyCheckDollar';
+import {FaIconComponent} from '@fortawesome/angular-fontawesome';
+import {faHouse} from '@fortawesome/free-solid-svg-icons/faHouse';
+import {faUser} from '@fortawesome/free-solid-svg-icons/faUser';
+import {faRightFromBracket} from '@fortawesome/free-solid-svg-icons/faRightFromBracket';
+import {faBoxesStacked} from '@fortawesome/free-solid-svg-icons/faBoxesStacked';
+import {faCartShopping, faList, faPlus, faUserPlus} from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -17,7 +24,8 @@ import {FormsModule} from '@angular/forms';
     NgSwitchCase,
     TitleCasePipe,
     FormsModule,
-    NgForOf
+    NgForOf,
+    FaIconComponent
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
@@ -32,7 +40,16 @@ export class HeaderComponent implements OnInit, OnDestroy{
   menuType: string = 'default';
   sellerName: string = '';
   userName: string = '';
-  productId : string | null = null
+  productId : string | null = null;
+  sellerIcon = faMoneyCheckDollar;
+  houseIcon = faHouse;
+  userIcon = faUser;
+  logoutIcon = faRightFromBracket;
+  myOrdersIcon = faBoxesStacked;
+  cartIcon = faCartShopping;
+  listIcon = faList;
+  addProductIcon = faPlus;
+  signUpIcon = faUserPlus;
 
   constructor(private route: Router, protected productSrc:ProductService) {
     effect(() => {

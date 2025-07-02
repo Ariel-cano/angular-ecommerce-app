@@ -18,24 +18,66 @@
   </div>
   <div [ngSwitch]="menuType">
     <ul *ngSwitchCase="'default'">
-      <li><a routerLink="seller-auth">Seller</a></li>
-      <li><a routerLink="">Home</a></li>
-      <li><a routerLink="user-auth">Login/Sign-up</a></li>
-      <li><a href="#">Cart({{productSrc.cartData()}})</a></li>
+      <div class="icon-label">
+        <fa-icon [icon]="sellerIcon" class="icon" routerLink="seller-auth"></fa-icon>
+        <a routerLink="seller-auth">Seller</a>
+      </div>
+      <div class="icon-label">
+        <fa-icon [icon]="houseIcon" class="icon" routerLink=""></fa-icon>
+        <a routerLink="">Home</a>
+      </div>
+      <div class="icon-label">
+        <fa-icon [icon]="signUpIcon" class="icon" routerLink="user-auth"></fa-icon>
+        <a routerLink="user-auth">Login/Sign-up</a>
+      </div>
+      <div class="icon-label">
+        <fa-icon [icon]="cartIcon" class="icon" routerLink="user-auth"></fa-icon>
+        <a href="#">Cart({{productSrc.cartData()}})</a>
+      </div>
     </ul>
     <ul *ngSwitchCase="'user'">
-      <li><a routerLink="seller-auth">Seller</a></li>
-      <li><a routerLink="">Home</a></li>
-      <li><a>{{userName | titlecase}}</a></li>
-      <li><a (click)="userlogout()">Logout</a></li>
-      <li><a routerLink="my-orders">My orders</a></li>
-      <li><a [routerLink]="productSrc.cartData() > 0 ? 'cart-page' : null">Cart({{productSrc.cartData()}})</a></li>
+      <div class="icon-label">
+        <fa-icon [icon]="sellerIcon" class="icon" routerLink="seller-auth"></fa-icon>
+        <a routerLink="seller-auth">Seller</a>
+      </div>
+      <div class="icon-label">
+        <fa-icon [icon]="houseIcon" class="icon" routerLink=""></fa-icon>
+        <a routerLink="">Home</a>
+      </div>
+      <div class="icon-label">
+        <fa-icon [icon]="userIcon" class="icon"></fa-icon>
+        <a>{{userName | titlecase}}</a>
+      </div>
+      <div class="icon-label" (click)="userlogout()">
+        <fa-icon [icon]="logoutIcon" class="icon"></fa-icon>
+        <a>Logout</a>
+      </div>
+      <div class="icon-label">
+        <fa-icon [icon]="myOrdersIcon" class="icon" routerLink="my-orders"></fa-icon>
+        <a routerLink="my-orders">My orders</a>
+      </div>
+      <div class="icon-label">
+        <fa-icon [icon]="cartIcon" class="icon" [routerLink]="productSrc.cartData() > 0 ? 'cart-page' : null"></fa-icon>
+        <a [routerLink]="productSrc.cartData() > 0 ? 'cart-page' : null">Cart({{productSrc.cartData()}})</a>
+      </div>
     </ul>
     <ul *ngSwitchCase="'seller'">
-      <li><a routerLink="seller-add-product">Add Product</a></li>
-      <li><a routerLink="seller-home">List</a></li>
-      <li><a (click)="logout()">Logout</a></li>
-      <li><a >{{sellerName | titlecase}}</a></li>
+      <div class="icon-label">
+        <fa-icon [icon]="addProductIcon" class="icon" routerLink="seller-add-product"></fa-icon>
+        <a routerLink="seller-add-product">Add Product</a>
+      </div>
+      <div class="icon-label">
+        <fa-icon routerLink="seller-home" [icon]="listIcon" class="icon"></fa-icon>
+        <a routerLink="seller-home">List</a>
+      </div>
+      <div class="icon-label" (click)="logout()">
+        <fa-icon [icon]="logoutIcon" class="icon"></fa-icon>
+        <a>Logout</a>
+      </div>
+      <div class="icon-label">
+        <fa-icon [icon]="userIcon" class="icon"></fa-icon>
+        <a >{{sellerName | titlecase}}</a>
+      </div>
     </ul>
   </div>
 </nav>
