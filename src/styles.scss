@@ -58,6 +58,21 @@ body{
     background: var(--primary-color);
   }
 }
+.form-button-delete{
+  height: 35px;
+  border: 1px solid var(--primary-color);
+  background-color: var(--primary-color);
+  color:white;
+  cursor: pointer;
+  transition: background 0.3s;
+  border-radius: 8px;
+
+  &:hover {
+    transition: color 0.2s;
+    background: var(--grey-color-light);
+    border: 1px solid var(--grey-color-light);
+  }
+}
 
 .error-p{
   color: red;
