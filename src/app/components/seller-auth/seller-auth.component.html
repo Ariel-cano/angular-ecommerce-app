@@ -5,15 +5,18 @@
       <input type="text"
              class="form-input"
              placeholder="Enter Name"
-             name="name" ngModel>
-      <input type="password"
-             class="form-input"
-             placeholder="Enter Password"
-             name="password" ngModel>
+             name="name" ngModel
+      required>
       <input type="email"
              class="form-input"
              placeholder="Enter Email"
-             name="email" ngModel>
+             name="email" ngModel
+             required>
+      <input type="password"
+             class="form-input"
+             placeholder="Enter Password"
+             name="password" ngModel
+      required>
       <button class="form-button">Sign Up</button>
       <a class="auth-toggle-link"  (click)="openLogin()">Already have account? Click for Login</a>
     </form>
@@ -25,11 +28,13 @@
       <input type="email"
              class="form-input"
              placeholder="Enter Email"
-             name="email" ngModel>
+             name="email" ngModel
+      required>
       <input type="password"
              class="form-input"
              placeholder="Enter Password"
-             name="password" ngModel>
+             name="password" ngModel
+      required>
       <button class="form-button">Login</button>
       <a class="auth-toggle-link"  (click)="openSignUp()">Create new account</a>
     </form>
