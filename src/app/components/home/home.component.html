@@ -12,25 +12,28 @@
   </ngb-carousel>
 }
 <div class="product-list-wrapper">
-  <h1>Trendy Product</h1>
+  <h2 class="m-3">Trendy Product</h2>
   <div class="row">
-    <div class="col-sm-3" *ngFor="let item of trendyProducts">
+    <div class="row row-cols-5" >
+      <div class="col" *ngFor="let item of trendyProducts">
       <div class="product-item">
-        <a class="link" routerLink="/details/{{item.id}}"><img src="{{item.image}}" alt="product"></a>
+        <div class="product-link" routerLink="/details/{{item.id}}">
+        <img src="{{item.image}}" alt="product">
         <div class="product-details">
-          <h6 class="name-head">{{item.name}}</h6>
-          <div class="product-price">
-            <h6>Price: {{item.price}}</h6>
+          <div class="product-det-cont">
+            <h4 class="product-color" [style.background-color]="item.color"></h4>
+            <h6 class="name-head truncate" >{{item.name}}</h6>
           </div>
-          <div class="product-color">
-            <h6>Color: {{item.color}}</h6>
+          <div>
+            <h2 style="color: green"><fa-icon [icon]="discountIcon" class="icon"></fa-icon>{{item.price}}$</h2>
           </div>
+        </div>
         </div>
         <div class="product-footer">
-          <a class="link" routerLink="/details/{{item.id}}"> View Details</a>
-          <button class="form-button" *ngIf="!removeCart[item.id]" (click)="addToCart(item)">Add to Cart</button>
-          <button class="form-button" *ngIf="removeCart[item.id]" (click)="removeFromCart(item)">Delete from Cart</button>
+          <button class="form-button card-button" *ngIf="!removeCart[item.id]" (click)="addToCart(item)">Add to Cart</button>
+          <button class="form-button card-button" *ngIf="removeCart[item.id]" (click)="removeFromCart(item)">Delete from Cart</button>
         </div>
+      </div>
       </div>
     </div>
   </div>
