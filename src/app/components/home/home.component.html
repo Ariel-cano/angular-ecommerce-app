@@ -30,8 +30,12 @@
         </div>
         </div>
         <div class="product-footer">
-          <button class="form-button card-button" *ngIf="!removeCart[item.id]" (click)="addToCart(item)">Add to Cart</button>
-          <button class="form-button card-button" *ngIf="removeCart[item.id]" (click)="removeFromCart(item)">Delete from Cart</button>
+          <div class="button-container" *ngIf="!removeCart[item.id]">
+            <button class="form-button card-button" (click)="addToCart(item)"><fa-icon [icon]="shoppingIcon" class="icon-button"></fa-icon>Add to Cart</button>
+          </div>
+          <div class="button-container" *ngIf="removeCart[item.id]">
+            <button class="form-button card-button" (click)="removeFromCart(item)"><fa-icon [icon]="trashIcon" class="icon-button"></fa-icon>Delete from Cart</button>
+          </div>
         </div>
       </div>
       </div>

@@ -5,7 +5,7 @@ import { cart, Product } from '../../models/data-types';
 import { Subscription } from 'rxjs';
 import {NgbCarousel, NgbSlide} from '@ng-bootstrap/ng-bootstrap';
 import {NgForOf, NgIf} from '@angular/common';
-import {faCartShopping, faTag} from '@fortawesome/free-solid-svg-icons';
+import {faCartShopping, faTag, faTrash} from '@fortawesome/free-solid-svg-icons';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 
 @Component({
@@ -28,7 +28,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   removeCart: { [productId: string]: boolean } = {};
   cartData: { [productId: string]: Product | undefined } = {};
   private cartSub?: Subscription;
-  discountIcon = faTag
+  discountIcon = faTag;
+  shoppingIcon = faCartShopping;
+  trashIcon = faTrash;
 
   constructor(
     private productSrc: ProductService,
