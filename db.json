@@ -105,13 +105,13 @@
       "image": "https://main-cdn.sbermegamarket.ru/big2/hlr-system/1663698415/100022775766b4.jpg"
     },
     {
-      "id": "b4fe",
       "name": "AlF",
-      "price": "10000000000",
+      "price": "100000000",
       "category": "puppet",
-      "color": "browm",
+      "color": "brown",
       "description": "interesting customer from USA show",
-      "image": "https://i1.sndcdn.com/avatars-000303645732-jft00d-t500x500.jpg"
+      "image": "https://i1.sndcdn.com/avatars-000303645732-jft00d-t500x500.jpg",
+      "id": "b4fe"
     },
     {
       "id": "46e9",
@@ -139,6 +139,24 @@
       "color": "green",
       "description": "pgflwgwg\nkq\ngkqgq",
       "image": "https://cdn1.ozone.ru/s3/multimedia-i/6348327198.jpg"
+    },
+    {
+      "name": "corgi cup",
+      "price": "999",
+      "category": "cups",
+      "color": "blue",
+      "description": "corki furri cup cool respect",
+      "image": "https://avatars.mds.yandex.net/i?id=7cfecea5bf804c127c72420d8970266555759156-8314096-images-thumbs&n=13",
+      "id": "jBXLWZ-"
+    },
+    {
+      "name": "angry birds cup",
+      "price": "1500",
+      "category": "cups",
+      "color": "green",
+      "description": "angry birds cup pig green cool kid",
+      "image": "https://avatars.mds.yandex.net/get-mpic/5289292/img_id6068973358773380972.jpeg/9hq",
+      "id": "T8A5c5W"
     }
   ],
   "users": [
@@ -175,88 +193,16 @@
   ],
   "cart": [
     {
-      "name": "galaxy ultra 90 pro +",
-      "price": "6000",
-      "category": "mobile",
-      "color": "black",
-      "description": "\ninp\nnnpmom",
-      "image": "https://avatars.mds.yandex.net/i?id=36224ff2bdb32e7ca2d9ffd7c8c9a3a83d25b2d6-5876519-images-thumbs&n=13",
-      "quantity": 4,
-      "productId": "3ec6",
+      "name": "angry birds cup",
+      "price": "1500",
+      "category": "cups",
+      "color": "green",
+      "description": "angry birds cup pig green cool kid",
+      "image": "https://avatars.mds.yandex.net/get-mpic/5289292/img_id6068973358773380972.jpeg/9hq",
+      "productId": "T8A5c5W",
       "userId": 1,
-      "id": 44
-    },
-    {
-      "name": "AlF",
-      "price": "10000000000",
-      "category": "puppet",
-      "color": "browm",
-      "description": "interesting customer from USA show",
-      "image": "https://i1.sndcdn.com/avatars-000303645732-jft00d-t500x500.jpg",
       "quantity": 1,
-      "productId": "b4fe",
-      "userId": 5,
-      "id": 45
-    },
-    {
-      "name": "lego sw ship",
-      "price": "10000",
-      "category": "lego",
-      "color": "red",
-      "description": "palpatin",
-      "image": "https://avatars.mds.yandex.net/get-mpic/5235128/2a0000018ea5061bed996c2c5e8970313294/orig",
-      "quantity": 1,
-      "productId": "46e9",
-      "userId": 5,
-      "id": 50
-    },
-    {
-      "name": "galaxy ultra 90 pro +",
-      "price": "6000",
-      "category": "mobile",
-      "color": "black",
-      "description": "\ninp\nnnpmom",
-      "image": "https://avatars.mds.yandex.net/i?id=36224ff2bdb32e7ca2d9ffd7c8c9a3a83d25b2d6-5876519-images-thumbs&n=13",
-      "quantity": 3,
-      "productId": "3ec6",
-      "userId": 5,
-      "id": 51
-    },
-    {
-      "name": "honor magicbook x 14",
-      "price": "50090",
-      "category": "notebook",
-      "color": "grey",
-      "description": "wel]flwkfgw\\pgkw\\g",
-      "image": "https://static.baza.farpost.ru/v/1735543824167_bulletin",
-      "quantity": 1,
-      "productId": "699a",
-      "userId": 1,
-      "id": 53
-    },
-    {
-      "name": "lego sw ship 74353",
-      "price": "10000",
-      "category": "lego",
-      "color": "red",
-      "description": "palpatin",
-      "image": "https://avatars.mds.yandex.net/get-mpic/5235128/2a0000018ea5061bed996c2c5e8970313294/orig",
-      "quantity": 1,
-      "productId": "76ac",
-      "userId": 5,
-      "id": 54
-    },
-    {
-      "name": "honor magicbook x 16",
-      "price": "1000",
-      "category": "notebook",
-      "color": "grey",
-      "description": "cool notebook for education",
-      "image": "https://mtscdn.ru/upload/iblock/214/BornH_Silver_Identity-Pictures_Left_HQ_PSD-RGB_20240531_1_.jpg",
-      "quantity": 1,
-      "productId": "8c30",
-      "userId": 5,
-      "id": 56
+      "id": 7
     }
   ],
   "orders": [
@@ -267,6 +213,22 @@
       "totalPrice": 76660,
       "userId": 1,
       "id": 1
+    },
+    {
+      "email": "50pka@gmail.com",
+      "address": "2r2r",
+      "contact": "2r2r2",
+      "totalPrice": 10333373733,
+      "userId": 5,
+      "id": 3
+    },
+    {
+      "email": "50pka@gmail.com",
+      "address": "2e1e1e",
+      "contact": "1e1e1",
+      "totalPrice": 10433,
+      "userId": 5,
+      "id": 4
     }
   ]
 }
