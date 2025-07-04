@@ -122,7 +122,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
         if (val.url) {
           if (localStorage.getItem('seller') && val.url.includes('seller')) {
             let sellerStore = localStorage.getItem('seller');
-            let sellerData = sellerStore && JSON.parse(sellerStore)[0];
+            let sellerData = (sellerStore && JSON.parse(sellerStore)[0]) || (sellerStore && JSON.parse(sellerStore));
             this.sellerName = sellerData.name;
             this.menuType = 'seller';
           }else if(localStorage.getItem('user')){
