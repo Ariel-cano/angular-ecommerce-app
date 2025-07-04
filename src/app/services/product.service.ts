@@ -33,11 +33,11 @@ export class ProductService {
   }
 
   popularProducts(){
-    return this.http.get<Product[]>(`${this.baseUrl}?_limit=4`);
+    return this.http.get<Product[]>(`${this.baseUrl}?_limit=5`);
   }
 
   getTrendyProducts(){
-    return this.http.get<Product[]>(`${this.baseUrl}?_limit=8`);
+    return this.http.get<Product[]>(`${this.baseUrl}?_limit=10`);
   }
   searchProduct(query: string){
     return this.http.get<Product[]>(`${this.baseUrl}?q=${query}`)

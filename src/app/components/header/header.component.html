@@ -32,7 +32,7 @@
       </div>
       <div class="icon-label" (click)="pleaseReg()">
         <fa-icon [icon]="cartIcon" class="icon" routerLink="user-auth"></fa-icon>
-        <a href="user-auth">Cart({{productSrc.cartData()}})</a>
+        <a>Cart({{productSrc.cartData()}})</a>
       </div>
     </ul>
     <ul *ngSwitchCase="'user'">
