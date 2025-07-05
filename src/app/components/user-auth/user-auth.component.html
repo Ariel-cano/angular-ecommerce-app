@@ -26,7 +26,7 @@
              required
       >
       <button class="form-button">Sign Up</button>
-      <p>Already have account? <a (click)="openLogin()">Click here</a></p>
+     <a (click)="openLogin()" class="auth-toggle-link">Already have account? Click here</a>
     </form>
   </div>
   <div class="login" *ngIf="showLogin">
@@ -56,7 +56,7 @@
       >
       <p class="invalid-input"><span *ngIf="password.invalid && password.touched">Please enter valid input</span></p>
       <button [disabled]="userLogin.invalid" class="form-button">Login</button>
-      <p>Want to create account? <a (click)="openSignUp()">Click here</a></p>
+      <a (click)="openSignUp()" class="auth-toggle-link">Want to create account? Click here</a>
     </form>
   </div>
 </div>

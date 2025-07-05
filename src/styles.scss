@@ -74,8 +74,15 @@ body{
   }
 }
 
-.error-p{
-  color: red;
+.error-p {
+  color: #e53935;
+  background: #fff3f3;
+  border: 1px solid #ffcdd2;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.98rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .message-p{
@@ -114,7 +121,7 @@ body{
 .invalid-input{
   color: red;
   font-size: 12px;
-  margin-top: -20px;
+  margin-top: -35px;
 }
 
 button:disabled{
@@ -123,6 +130,70 @@ button:disabled{
 .max-width{
   width: 100%;
 }
+.seller-auth,.user-auth{
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7f8fa;
+  overflow: hidden;
+}
+.sign-up, .login {
+  background: #fff;
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px rgba(0, 0, 0, 0.10), 0 1.5px 4px rgba(0, 0, 0, 0.06);
+  min-width: 320px;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  box-sizing: border-box;
+  h1 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .common-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: stretch;
+  }
+
+  .form-input {
+    padding: 0.9rem 1.1rem;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1.08rem;
+    transition: border 0.2s;
+    outline: none;
+    background: #fafbfc;
+  }
+
+  .form-input:focus {
+    border-color: var(--primary-color);
+    background: #fff;
+  }
+}
+.auth-toggle-link {
+  color: var(--primary-color-light);
+  margin-top: 1rem;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.2s;
+  display: block;
+  text-decoration: none;
+}
+
+.auth-toggle-link:hover {
+  color: var(--primary-color);
+}
+
 
 
 /* Importing Bootstrap SCSS file. */
