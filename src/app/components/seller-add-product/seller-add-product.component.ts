@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {ProductService} from '../../services/product.service';
 import {Product} from '../../models/data-types';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-seller-add-product',
@@ -14,7 +15,7 @@ import {Product} from '../../models/data-types';
 })
 export class SellerAddProductComponent {
   addProductMessage: string | undefined;
-  constructor(private productSrc: ProductService) {
+  constructor(private productSrc: ProductService, private router: Router) {
   }
 
   submitProduct(data: Product){
@@ -25,6 +26,7 @@ export class SellerAddProductComponent {
     });
     setTimeout(() => {
       this.addProductMessage = undefined;
+      this.router.navigate(['seller-home']);
     }, 3000);
   }
 }

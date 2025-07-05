@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ProductService} from '../../services/product.service';
 import {Product} from '../../models/data-types';
 
@@ -18,7 +18,7 @@ export class SellerUpdateProductComponent implements OnInit{
   productData: undefined | Product;
   productMessage: undefined | string;
 
-  constructor(private route: ActivatedRoute, private productSrc: ProductService) {
+  constructor(private route: ActivatedRoute, private productSrc: ProductService, private router: Router) {
   }
 
   ngOnInit() {
@@ -38,8 +38,10 @@ export class SellerUpdateProductComponent implements OnInit{
       }
     })
     setTimeout(()=>{
-      this.productMessage = undefined
+      this.productMessage = undefined;
+      this.router.navigate(['seller-home']);
     },3000)
+
   }
 
 
