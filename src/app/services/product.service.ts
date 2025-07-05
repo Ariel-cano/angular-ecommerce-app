@@ -37,7 +37,7 @@ export class ProductService {
   }
 
   getTrendyProducts(){
-    return this.http.get<Product[]>(`${this.baseUrl}?_limit=10`);
+    return this.http.get<Product[]>(`${this.baseUrl}?_limit=16`);
   }
   searchProduct(query: string){
     return this.http.get<Product[]>(`${this.baseUrl}?q=${query}`)

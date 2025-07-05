@@ -115,4 +115,5 @@ export class ProductDetailsComponent implements OnInit{
 
   }
 
+  protected readonly localStorage = localStorage;
 }
