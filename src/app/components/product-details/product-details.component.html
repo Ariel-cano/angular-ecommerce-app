@@ -17,7 +17,7 @@
         <button (click)="handleQuantity('plus')" >+</button>
       </div>
       <div class="button-container">
-        <div class="button-container" *ngIf="!removeCart">
+        <div class="button-container" *ngIf="!removeCart && localStorage.getItem('user')">
           <button routerLink="/cart-page" class="form-button" (click)="addToCart()"><fa-icon [icon]="cartIcon" class="icon-button"></fa-icon>Buy Now</button>
         </div>
         <div class="button-container" *ngIf="removeCart">
