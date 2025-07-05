@@ -4,20 +4,28 @@
   </div>
   <div class="col-sm-6">
     <div class="details">
-      <h1>{{productData.name}}</h1>
-      <h3>Price: {{productData.price}}</h3>
-      <div> Color:
-        <h3 class="product-color" [style.background-color]="productData.color"></h3>
+      <div class="product-det-cont">
+        <h4 class="product-color" [style.background-color]="productData.color"></h4>
+        <h2>{{productData.name}}</h2>
       </div>
-      <h6>Category : {{productData.category}}</h6>
-      <h6>Description : {{productData.description}}</h6>
-      <button class="form-button">Buy Now</button>
-      <button *ngIf="!removeCart" class="form-button" (click)="addToCart()">Add to Cart</button>
-      <button *ngIf="removeCart" class="form-button" (click)="removeFromCart(productData.id)">Delete from Cart</button>
+      <h1 style="color: green"><fa-icon [icon]="discountIcon" class="icon"></fa-icon>{{productData.price}}$</h1>
+      <h4>Category : {{productData.category}}</h4>
+      <h5>{{productData.description}}</h5>
       <div class="quantity-group">
         <button (click)="handleQuantity('min')">-</button>
         <input type="text" value="{{productQuantity}}">
         <button (click)="handleQuantity('plus')" >+</button>
+      </div>
+      <div class="button-container">
+        <div class="button-container" *ngIf="!removeCart">
+          <button class="form-button"><fa-icon [icon]="cartIcon" class="icon-button"></fa-icon>Buy Now</button>
+        </div>
+        <div class="button-container" *ngIf="removeCart">
+          <button class="form-button-delete" (click)="removeFromCart(productData.id)"><fa-icon [icon]="trashIcon" class="icon-button"></fa-icon>Delete from Cart</button>
+        </div>
+        <div class="button-container" *ngIf="!removeCart">
+          <button class="form-button" (click)="addToCart()"><fa-icon [icon]="cartIcon" class="icon-button"></fa-icon>Add to Cart</button>
+        </div>
       </div>
     </div>
   </div>

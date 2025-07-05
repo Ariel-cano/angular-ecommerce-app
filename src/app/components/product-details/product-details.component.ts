@@ -3,12 +3,15 @@ import {ActivatedRoute} from '@angular/router';
 import {ProductService} from '../../services/product.service';
 import {cart, Product} from '../../models/data-types';
 import {NgIf} from '@angular/common';
+import {faCartShopping, faTag, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
   imports: [
-    NgIf
+    NgIf,
+    FaIconComponent
   ],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss'
@@ -18,6 +21,9 @@ export class ProductDetailsComponent implements OnInit{
   productQuantity: number = 1;
   removeCart = false;
   cartData: Product | undefined;
+  discountIcon = faTag;
+  trashIcon = faTrash;
+  cartIcon = faCartShopping;
   constructor(private activatedRoute: ActivatedRoute, private productSrc: ProductService) {
   }
 
@@ -107,6 +113,5 @@ export class ProductDetailsComponent implements OnInit{
     }
 
   }
-
 
 }
