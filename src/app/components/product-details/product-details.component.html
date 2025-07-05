@@ -18,7 +18,7 @@
       </div>
       <div class="button-container">
         <div class="button-container" *ngIf="!removeCart">
-          <button class="form-button"><fa-icon [icon]="cartIcon" class="icon-button"></fa-icon>Buy Now</button>
+          <button routerLink="/cart-page" class="form-button" (click)="addToCart()"><fa-icon [icon]="cartIcon" class="icon-button"></fa-icon>Buy Now</button>
         </div>
         <div class="button-container" *ngIf="removeCart">
           <button class="form-button-delete" (click)="removeFromCart(productData.id)"><fa-icon [icon]="trashIcon" class="icon-button"></fa-icon>Delete from Cart</button>

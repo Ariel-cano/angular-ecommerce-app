@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import {ProductService} from '../../services/product.service';
 import {cart, Product} from '../../models/data-types';
 import {NgIf} from '@angular/common';
@@ -11,7 +11,8 @@ import {FaIconComponent} from '@fortawesome/angular-fontawesome';
   standalone: true,
   imports: [
     NgIf,
-    FaIconComponent
+    FaIconComponent,
+    RouterLink
   ],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss'
