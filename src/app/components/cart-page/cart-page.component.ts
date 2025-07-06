@@ -56,18 +56,7 @@ export class CartPageComponent implements OnInit{
         this.priceSummary.discount = Math.round(price / 15);
         this.priceSummary.tax = Math.round((price / 100)*6);
         this.priceSummary.delivery = 100;
-        let total: number = 0;
-        for (let sum of Object.values(this.priceSummary)){
-          if (sum === this.priceSummary.total){
-            total+=0;
-          } else if (sum != this.priceSummary.discount){
-            total += +sum;
-          }else{
-            total -= +sum;
-          }
-
-        }
-        this.priceSummary.total = Math.round(total);
+        this.priceSummary.total = Math.round(this.priceSummary.price + this.priceSummary.tax + this.priceSummary.delivery - this.priceSummary.discount);
 
         if(!this.cartData.length){
           this.router.navigate(['/']);
