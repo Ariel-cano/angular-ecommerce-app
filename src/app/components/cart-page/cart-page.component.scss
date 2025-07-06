@@ -49,7 +49,7 @@ table td {
 }
 
 .cart-img {
-  width: 90px;
+  width: 95px;
   height: 80px;
   object-fit: cover;
   border-radius: 8px;
@@ -97,21 +97,7 @@ table td {
   color: #212529;
 }
 
-.checkout-btn {
-  width: 100%;
-  //font-size: 16px;
-  //padding: 12px 24px;
-  //letter-spacing: 0.5px;
-  //margin-top: 20px;
-}
-.icon{
-  margin-right: 5px;
-  font-size: 25px;
-  &-button{
-    font-size: 15px;
-    margin-right: 5px;
-  }
-}
+
 
 @media (max-width: 992px) {
   .cart-page {

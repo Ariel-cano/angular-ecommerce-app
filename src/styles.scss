@@ -84,6 +84,14 @@ body{
   margin-bottom: 0.5rem;
   text-align: center;
 }
+.icon{
+  margin-right: 5px;
+  font-size: 25px;
+  &-button{
+    font-size: 15px;
+    margin-right: 5px;
+  }
+}
 
 .message-p{
   color: green;
