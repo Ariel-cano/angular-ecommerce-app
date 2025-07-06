@@ -1,20 +1,26 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../../services/product.service';
 import {cart, priceSummary} from '../../models/data-types';
-import {NgForOf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 import {Router} from '@angular/router';
+import {faTrash} from "@fortawesome/free-solid-svg-icons";
+import {FaIconComponent} from "@fortawesome/angular-fontawesome";
+import {faBagShopping} from '@fortawesome/free-solid-svg-icons/faBagShopping';
 
 @Component({
   selector: 'app-cart-page',
   standalone: true,
   imports: [
-    NgForOf
+    NgForOf,
+    FaIconComponent,
+    NgIf
   ],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss'
 })
 export class CartPageComponent implements OnInit{
   cartData : cart[] | undefined;
+  checkoutIcon =faBagShopping;
   priceSummary : priceSummary = {
     price: 0,
     discount: 0,
@@ -48,7 +54,7 @@ export class CartPageComponent implements OnInit{
         })
         this.priceSummary.price = Math.round(price);
         this.priceSummary.discount = Math.round(price / 15);
-        this.priceSummary.tax = Math.round(price / 10);
+        this.priceSummary.tax = Math.round((price / 100)*6);
         this.priceSummary.delivery = 100;
         let total: number = 0;
         for (let sum of Object.values(this.priceSummary)){
@@ -72,4 +78,6 @@ export class CartPageComponent implements OnInit{
   }
 
 
+    protected readonly icon = faTrash;
+  protected readonly trashIcon = faTrash;
 }

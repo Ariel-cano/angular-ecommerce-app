@@ -1,35 +1,51 @@
 <div class="cart-page">
-  <h1>Cart Page</h1>
-  <div class="row">
-    <div class="col-sm-8 details">
-      <ul *ngFor="let cart of cartData">
-        <li>
-          <img src="{{cart.image}}" alt="img">
-        </li>
-        <li>
-          <span>{{cart.name}}</span>
-        </li>
-        <li>
-          <span>Price : {{cart.price}}</span>
-        </li>
-        <li>
-          <span>{{cart.quantity}}</span>
-        </li>
-        <li>
-          <button class="form-button" (click)="removeFromCart(cart.id)">Remove from Cart</button>
-        </li>
-      </ul>
+  <div class="cart-items">
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cartData">
+          <td><img class="cart-img" src="{{item.image}}" alt=""></td>
+          <td>{{item.name}}</td>
+          <td>{{item.price}}</td>
+          <td>{{item.quantity}}</td>
+          <td *ngIf="item.quantity">{{item.quantity * item.price}}</td>
+          <td><button class="form-button-delete" (click)="removeFromCart(item.id)"><fa-icon [icon]="trashIcon" class="icon-button"/>Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cart-summary">
+    <h3 class="summary-heading">Price Details</h3>
+    <div class="price-row">
+      <span>Price ({{cartData?.length || 0}} items)</span>
+      <span>{{priceSummary.price}}</span>
     </div>
-    <div class="col-sm-4 summary">
-      <h3>Summary</h3>
-      <ul>
-        <li><span>Amount:</span><span>{{this.priceSummary.price}}</span></li>
-        <li><span>Tax:</span><span>{{this.priceSummary.tax}}</span></li>
-        <li><span>Delivery:</span><span>{{this.priceSummary.delivery}}</span></li>
-        <li><span>Discount:</span><span>{{this.priceSummary.discount}}</span></li>
-        <li><span><h4>Total</h4></span><span><h4>{{this.priceSummary.total}}</h4></span></li>
-        <button class="form-button max-width" (click)="checkout()">Checkout</button>
-      </ul>
+    <div class="price-row">
+      <span>Delivery</span>
+      <span>{{priceSummary.delivery}}</span>
     </div>
+    <div class="price-row">
+      <span>Tax</span>
+      <span>{{priceSummary.tax}}</span>
+    </div>
+    <div class="price-row">
+      <span>Discount</span>
+      <span>{{priceSummary.discount}}</span>
+    </div>
+    <div class="price-row total">
+      <span>Total</span>
+      <span>{{priceSummary.total}}</span>
+    </div>
+    <button  class="w-100 form-button" (click)="checkout()"><fa-icon [icon]="checkoutIcon" class="icon-button"></fa-icon>Checkout</button>
   </div>
 </div>
