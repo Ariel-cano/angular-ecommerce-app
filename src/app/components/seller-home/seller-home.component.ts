@@ -30,15 +30,18 @@ export class SellerHomeComponent implements OnInit{
   }
 
   deleteProduct(id:string){
-    this.productSrc.deleteProductById(id).subscribe((result)=>{
-      if (result){
-        this.productMessage = 'Product is deleted';
-        this.loadList();
-      }
-    });
-    setTimeout(()=>{
-      this.productMessage = undefined;
-    }, 3000)
+    const permit = confirm('Are you sure you want to delete this product?');
+    if (permit){
+      this.productSrc.deleteProductById(id).subscribe((result)=>{
+        if (result){
+          this.productMessage = 'Product is deleted';
+          this.loadList();
+        }
+      });
+      setTimeout(()=>{
+        this.productMessage = undefined;
+      }, 3000)
+    }
   }
 
   loadList(){
