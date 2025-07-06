@@ -1,10 +1,9 @@
 <div class="checkout">
-  <h1>
-    CheckOut
-  </h1>
+  <div class="user-auth">
   <div class="row">
     <div class="col-sm-7">
-      <h3>Add shipping address</h3>
+      <div class="login">
+      <h1>Add shipping address</h1>
       <p class="message-p">{{orderMsg}}</p>
       <form #orderData="ngForm" class="common-form" (ngSubmit)="orderNow(orderData.value)">
         <input type="email"
@@ -12,25 +11,32 @@
                placeholder="Enter User Email"
                class="form-input"
                ngModel
+               required
         >
         <input type="text"
                name="address"
                placeholder="Enter User Address"
                class="form-input"
                ngModel
+               required
         >
         <input type="text"
                name="contact"
                placeholder="Enter User Contact data"
                class="form-input"
                ngModel
+               required
         >
-        <button class="form-button">Order Now</button>
+        <button [disabled]="orderData.invalid" class="form-button">Order Now</button>
       </form>
     </div>
-    <div class="col-sm-5">
-      <h3>Total Amount: {{totalPrice}}</h3>
-      <h4>Payment Method: <b>Pay on delivery</b></h4>
     </div>
+    <div class="col-sm-5">
+      <div class="login">
+        <h3>Total Amount: <b>{{totalPrice}}$</b></h3>
+        <h4>Payment Method: <b>Pay on delivery</b></h4>
+      </div>
+    </div>
+  </div>
   </div>
 </div>

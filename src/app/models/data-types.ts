@@ -55,6 +55,7 @@ export interface order{
   userId: string,
   totalPrice: number,
   id: string | undefined
+  date: Date;
 }
 
 

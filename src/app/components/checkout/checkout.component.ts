@@ -27,7 +27,8 @@ export class CheckoutComponent implements OnInit{
         ...data,
         totalPrice:this.totalPrice,
         userId,
-        id: undefined
+        id: undefined,
+        date: new Date()
       }
       this.cartData?.forEach((item)=>{
         setTimeout(()=>{
@@ -56,7 +57,10 @@ export class CheckoutComponent implements OnInit{
             price = +price + (+item.price * +item.quantity)
           }
         })
-        this.totalPrice = Math.round((price)+(price/10)+100-(price/15));
+        this.totalPrice = Math.round((price)+((price/100)*6)+100-(price/15));
+        if (this.totalPrice === 100){
+          this.router.navigate(['/']);
+        }
       }
     })
   }
