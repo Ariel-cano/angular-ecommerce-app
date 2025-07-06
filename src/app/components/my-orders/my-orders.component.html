@@ -1,37 +1,40 @@
-<div class="order">
-  <h1>My Orders</h1>
-  <div class="row order-data">
-    <div class="col-sm-2">
-      <span>Order</span>
-    </div>
-    <div class="col-sm-2">
-      <span>Order Id</span>
-    </div>
-    <div class="col-sm-2">
-      <span>Price</span>
-    </div>
-    <div class="col-sm-2">
-      <span>Status</span>
-    </div>
-    <div class="col-sm-2">
-      <span>Cancel Order</span>
-    </div>
-  </div>
-  <div class="row order-data" *ngFor="let order of orderData">
-    <div class="col-sm-2">
-      <img class="order-img" src="https://avatars.mds.yandex.net/i?id=7c7ae6d004bea740fc064bbf4a080a95678ac6ec-13081656-images-thumbs&n=13" alt="">
-    </div>
-    <div class="col-sm-2">
-      <span>#{{order.id}}</span>
-    </div>
-    <div class="col-sm-2">
-      <span>{{order.totalPrice}}</span>
-    </div>
-    <div class="col-sm-2">
-      <span>In Progress</span>
-    </div>
-    <div class="col-sm-2">
-      <span><button class="form-button" (click)="cancelOrder(order.id)">Cancel Order</button></span>
-    </div>
-  </div>
+<div class="my-orders-container">
+  <h2 class="m-3">My Orders</h2>
+  <table class="orders-table">
+    <thead>
+    <tr>
+      <th>Order</th>
+      <th>Order Id</th>
+      <th>Price</th>
+      <th>Status</th>
+      <th>Date</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orderData">
+      <td>
+        <img class="order-img" src="https://avatars.mds.yandex.net/i?id=7c7ae6d004bea740fc064bbf4a080a95678ac6ec-13081656-images-thumbs&n=13" alt="">
+      </td>
+      <td>
+        <span>#{{order.id}}</span>
+      </td>
+      <td>
+        <span>{{order.totalPrice}}</span>
+      </td>
+      <td>
+        <span>In Progress</span>
+      </td>
+      <td>
+        <span>{{order.date | date}}</span>
+      </td>
+      <td>
+<!--        <button class="order-action-btn" (click)="viewOrder(order.id)">View</button>-->
+        <button class="form-button-delete" (click)="cancelOrder(order.id)">
+          <fa-icon [icon]="trashIcon" class="icon-button"></fa-icon>Cancel Order
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>

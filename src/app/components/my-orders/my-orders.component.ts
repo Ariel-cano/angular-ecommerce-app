@@ -1,13 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../../services/product.service';
 import {order} from '../../models/data-types';
-import {NgForOf} from '@angular/common';
+import {DatePipe, NgForOf} from '@angular/common';
+import {faTrash} from '@fortawesome/free-solid-svg-icons';
+import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-my-orders',
   standalone: true,
   imports: [
-    NgForOf
+    NgForOf,
+    DatePipe,
+    FaIconComponent
   ],
   templateUrl: './my-orders.component.html',
   styleUrl: './my-orders.component.scss'
@@ -34,4 +38,5 @@ export class MyOrdersComponent implements OnInit{
     })
   }
 
+  protected readonly trashIcon = faTrash;
 }
