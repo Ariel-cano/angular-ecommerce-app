@@ -109,7 +109,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       delete cartItem.id;
       this.productSrc.addToCart(cartItem).subscribe(() => {
         this.productSrc.getCartList(userId);
-        this.router.navigate(['/cart-page']);
       });
     } else {
       product.quantity = 1;
