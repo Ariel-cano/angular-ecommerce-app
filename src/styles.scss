@@ -37,13 +37,6 @@ body{
   margin: auto;
 }
 
-.form-input{
-  height: 35px;
-  margin-bottom: 20px;
-  border: 1px solid var(--primary-color);
-  padding-left: 15px;
-  color: blueviolet;
-}
 .form-button{
   height: 35px;
   border: 1px solid var(--grey-color-light);
@@ -200,6 +193,26 @@ button:disabled{
 
 .auth-toggle-link:hover {
   color: var(--primary-color);
+}
+.error-messages {
+  color: #dc3545;
+  font-size: 13px;
+  display: block;
+  margin: 0;
+  padding: 0;
+  small {
+    display: block;
+    background: rgba(220,53,69,0.09);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+}
+
+.form-input{
+  height: 35px;
+  margin-bottom: 20px;
+  padding-left: 15px;
 }
 
 
