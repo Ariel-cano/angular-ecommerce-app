@@ -2,14 +2,22 @@ import {Component, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {SellerService} from '../../services/seller.service';
 import {signUp} from '../../models/data-types';
-import {NgIf} from '@angular/common';
+import {JsonPipe, NgIf, NgStyle} from '@angular/common';
+import {EmailValidationDirective} from '../../directives/email-validation.directive';
+import {NameValidationDirective} from '../../directives/name-validation.directive';
+import {PasswordValidationDirective} from '../../directives/password-validation.directive';
 
 @Component({
   selector: 'app-seller-auth',
   standalone: true,
   imports: [
     FormsModule,
-    NgIf
+    NgIf,
+    EmailValidationDirective,
+    JsonPipe,
+    NameValidationDirective,
+    PasswordValidationDirective,
+    NgStyle
   ],
   templateUrl: './seller-auth.component.html',
   styleUrl: './seller-auth.component.scss'

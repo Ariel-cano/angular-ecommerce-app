@@ -4,20 +4,53 @@
     <form class="common-form" #sellerSignUp="ngForm" (ngSubmit)="signUp(sellerSignUp.value)">
       <input type="text"
              class="form-input"
+             [ngStyle]="{'margin-bottom': (name.invalid && name.touched) ? '0' : '20px'}"
              placeholder="Enter Name"
-             name="name" ngModel
-      required>
+             name="name"
+             #name="ngModel"
+             ngModel
+             appNameValidation
+             required
+      >
+      <div class="error-messages" *ngIf="name.invalid && name.touched">
+        <small *ngIf="name.errors?.['required']">Name is required</small>
+        <small *ngIf="name.errors?.['invalidLength']"> Name must be more than 3 and less than 30 characters</small>
+        <small *ngIf="name.errors?.['invalidCharacters']">Name must contain only English letters</small>
+      </div>
       <input type="email"
              class="form-input"
              placeholder="Enter Email"
-             name="email" ngModel
-             required>
+             [ngStyle]="{'margin-bottom': (email.invalid && email.touched) ? '0' : '20px'}"
+             name="email"
+             #email="ngModel"
+             ngModel
+             appEmailValidation
+             required
+      >
+      <div class="error-messages" *ngIf="email.invalid && email.touched">
+        <small *ngIf="email.errors?.['required']">Email is required</small>
+        <small *ngIf="email.errors?.['invalidEmail']">Please enter a valid email ex. "seller&#64;seller.com"</small>
+      </div>
       <input type="password"
              class="form-input"
              placeholder="Enter Password"
-             name="password" ngModel
-      required>
-      <button class="form-button">Sign Up</button>
+             [ngStyle]="{'margin-bottom': (password.invalid && password.touched) ? '0' : '20px'}"
+             name="password"
+             ngModel
+             #password="ngModel"
+             appPasswordValidation
+             required
+      >
+      <div class="error-messages" *ngIf="password.invalid && password.touched">
+        <small *ngIf="password.errors?.['required']">Password is required</small>
+        <small *ngIf="password.errors?.['noNumber']">Password must have a number</small>
+        <small *ngIf="password.errors?.['noUpperCase']">Password must have an uppercase letter</small>
+        <small *ngIf="password.errors?.['noLowerCase']">Password must have a lowercase letter</small>
+        <small *ngIf="password.errors?.['noSpecialChar']">Password must have a special character</small>
+        <small *ngIf="password.errors?.['minLength']">Password must be at least 8 characters</small>
+      </div>
+
+      <button class="form-button" type="submit" [disabled]="sellerSignUp.invalid">Sign Up</button>
       <a class="auth-toggle-link"  (click)="openLogin()">Already have account? Click for Login</a>
     </form>
   </div>
@@ -29,13 +62,13 @@
              class="form-input"
              placeholder="Enter Email"
              name="email" ngModel
-      required>
+             required>
       <input type="password"
              class="form-input"
              placeholder="Enter Password"
              name="password" ngModel
       required>
-      <button class="form-button">Login</button>
+      <button  type="submit" [disabled]="sellerLogin.invalid" class="form-button">Login</button>
       <a class="auth-toggle-link"  (click)="openSignUp()">Create new account</a>
     </form>
   </div>
