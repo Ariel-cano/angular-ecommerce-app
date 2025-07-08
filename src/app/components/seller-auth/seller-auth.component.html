@@ -61,13 +61,26 @@
       <input type="email"
              class="form-input"
              placeholder="Enter Email"
-             name="email" ngModel
-             required>
+             name="email"
+             #email="ngModel"
+             [ngStyle]="{'margin-bottom': (email.invalid && email.touched) ? '0' : '20px'}"
+             ngModel
+             required
+      >
+      <div class="error-messages" *ngIf="email.invalid && email.touched">
+        <small *ngIf="email.errors?.['required']">Email is required</small>
+      </div>
       <input type="password"
              class="form-input"
              placeholder="Enter Password"
-             name="password" ngModel
+             name="password"
+              #password="ngModel"
+             [ngStyle]="{'margin-bottom': (password.invalid && password.touched) ? '0' : '20px'}"
+             ngModel
       required>
+      <div class="error-messages" *ngIf="password.invalid && password.touched">
+        <small *ngIf="email.errors?.['required']">Password is required</small>
+      </div>
       <button  type="submit" [disabled]="sellerLogin.invalid" class="form-button">Login</button>
       <a class="auth-toggle-link"  (click)="openSignUp()">Create new account</a>
     </form>
