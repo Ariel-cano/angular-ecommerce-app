@@ -2,15 +2,22 @@ import {Component, effect, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {cart, login, Product, signUp} from '../../models/data-types';
 import {UserService} from '../../services/user.service';
-import {NgIf} from '@angular/common';
+import {NgIf, NgStyle} from '@angular/common';
 import {ProductService} from '../../services/product.service';
+import {NameValidationDirective} from '../../directives/name-validation.directive';
+import {EmailValidationDirective} from '../../directives/email-validation.directive';
+import {PasswordValidationDirective} from '../../directives/password-validation.directive';
 
 @Component({
   selector: 'app-user-auth',
   standalone: true,
   imports: [
     FormsModule,
-    NgIf
+    NgIf,
+    NgStyle,
+    NameValidationDirective,
+    EmailValidationDirective,
+    PasswordValidationDirective
   ],
   templateUrl: './user-auth.component.html',
   styleUrl: './user-auth.component.scss'
