@@ -3,12 +3,19 @@ import {FormsModule} from '@angular/forms';
 import {ProductService} from '../../services/product.service';
 import {cart, contactData, order} from '../../models/data-types';
 import {Router} from '@angular/router';
+import {EmailValidationDirective} from '../../directives/email-validation.directive';
+import {NgIf, NgStyle} from '@angular/common';
+import {PhoneValidationDirective} from '../../directives/phone-validation.directive';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
   imports: [
-    FormsModule
+    FormsModule,
+    EmailValidationDirective,
+    NgIf,
+    NgStyle,
+    PhoneValidationDirective
   ],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss'
