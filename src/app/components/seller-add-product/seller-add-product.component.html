@@ -13,12 +13,13 @@
                    name="name" ngModel
                    #name ="ngModel"
                    required
-                   appNameValidation
+                   minlength="3"
+                   maxlength="30"
             >
             <div class="error-messages" *ngIf="name.invalid && name.touched">
               <small *ngIf="name.errors?.['required']">Name is required</small>
-              <small *ngIf="name.errors?.['invalidLength']"> Name must be more than 3 and less than 30 characters</small>
-              <small *ngIf="name.errors?.['invalidCharacters']">Name must contain only English letters</small>
+              <small *ngIf="name.errors?.['minlength']">Name must be more than 3 characters</small>
+              <small *ngIf="name.errors?.['maxlength']">Name must not be more than 30 characters</small>
             </div>
           </div>
           <div>
@@ -28,7 +29,8 @@
                    name="price" ngModel
                    #price="ngModel"
                    required
-                   pattern="^[0-9]+$">
+                   pattern="^[0-9]+$"
+                   maxlength="15">
             <div class="error-messages" *ngIf="price.invalid && price.touched">
               <small *ngIf="price.errors?.['required']">Price is required</small>
               <small *ngIf="price.errors?.['pattern']">Price must be only numbers</small>
@@ -41,7 +43,8 @@
                    #category="ngModel"
                    name="category" ngModel
                    required
-                   pattern="^[a-zA-Z]+$">
+                   pattern="^[a-zA-Z]+$"
+                   maxlength="30">
             <div class="error-messages" *ngIf="category.invalid && category.touched">
               <small *ngIf="category.errors?.['required']">Category is required</small>
               <small *ngIf="category.errors?.['pattern']">Category must be only English letters</small>
@@ -69,6 +72,8 @@
                       #description="ngModel"
                       minlength="10"
                       required
+                      maxlength="200"
+                      style="width: 249px"
             ></textarea>
             <div class="error-messages" *ngIf="description.invalid && description.touched">
               <small *ngIf="description.errors?.['required']">Description is required</small>
