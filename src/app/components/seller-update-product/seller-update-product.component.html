@@ -1,35 +1,104 @@
 <div class="seller-auth">
   <div class="sign-up">
-    <div class="update-product">
+    <div class="add-product">
       <h1>Update Product</h1>
       <p class="message-p">{{productMessage}}</p>
-      <form #addProduct="ngForm" class="common-form"
-            (ngSubmit)="submitProduct(addProduct.value)">
-        <input type="text"
-               class="form-input"
-               placeholder="Enter Product Name"
-               name="name" ngModel="{{productData?.name}}">
-        <input type="text"
-               class="form-input"
-               placeholder="Enter Product Price"
-               name="price" ngModel="{{productData?.price}}">
-        <input type="text"
-               class="form-input"
-               placeholder="Enter Product Category"
-               name="category" ngModel="{{productData?.category}}">
-        <input type="text"
-               class="form-input"
-               placeholder="Enter Product Color"
-               name="color" ngModel="{{productData?.color}}">
-        <textarea type="text"
-                  class="form-input"
-                  placeholder="Enter Product Description"
-                  name="description" ngModel="{{productData?.description}}"></textarea>
-        <input type="text"
-               class="form-input"
-               placeholder="Enter Product Image URL"
-               name="image" ngModel="{{productData?.image}}">
-        <button class="form-button">Update Product</button>
+      <form #updateProduct="ngForm"
+            (ngSubmit)="submitProduct(updateProduct.value)">
+        <div class="common-form">
+          <div>
+            <input type="text"
+                   class="form-input"
+                   placeholder="Enter Product Name"
+                   name="name"
+                   ngModel="{{productData?.name}}"
+                   #name ="ngModel"
+                   required
+                   minlength="3"
+                   maxlength="30"
+            >
+            <div class="error-messages" *ngIf="name.invalid && name.touched">
+              <small *ngIf="name.errors?.['required']">Name is required</small>
+              <small *ngIf="name.errors?.['minlength']">Name must be more than 3 characters</small>
+            </div>
+          </div>
+          <div>
+            <input type="text"
+                   class="form-input"
+                   placeholder="Enter Product Price"
+                   name="price" ngModel="{{productData?.price}}"
+                   #price="ngModel"
+                   required
+                   pattern="^[0-9]+$"
+                   maxlength="15"
+            >
+
+            <div class="error-messages" *ngIf="price.invalid && price.touched">
+              <small *ngIf="price.errors?.['required']">Price is required</small>
+              <small *ngIf="price.errors?.['pattern']">Price must be only numbers</small>
+            </div>
+          </div>
+          <div>
+            <input type="text"
+                   class="form-input"
+                   placeholder="Enter Product Category"
+                   #category="ngModel"
+                   name="category" ngModel="{{productData?.category}}"
+                   required
+                   pattern="^[a-zA-Z]+$"
+                   maxlength="30"
+            >
+            <div class="error-messages" *ngIf="category.invalid && category.touched">
+              <small *ngIf="category.errors?.['required']">Category is required</small>
+              <small *ngIf="category.errors?.['pattern']">Category must be only English letters</small>
+            </div>
+          </div>
+          <div>
+            <input type="text"
+                   class="form-input"
+                   placeholder="Enter Product Color"
+                   name="color" ngModel="{{productData?.color}}"
+                   #color="ngModel"
+                   required
+                   appColorValidation
+            >
+            <div class="error-messages" *ngIf="color.invalid && color.touched">
+              <small *ngIf="color.errors?.['required']">Color is required</small>
+              <small *ngIf="color.errors?.['invalidColor']">Incorrect color name</small>
+            </div>
+          </div>
+          <div>
+            <textarea type="text"
+                      class="form-input"
+                      placeholder="Enter Product Description"
+                      name="description" ngModel="{{productData?.description}}"
+                      #description="ngModel"
+                      minlength="10"
+                      required
+                      style="width: 249px"
+                      maxlength="200"
+            ></textarea>
+            <div class="error-messages" *ngIf="description.invalid && description.touched">
+              <small *ngIf="description.errors?.['required']">Description is required</small>
+              <small *ngIf="description.errors?.['minlength']">Description must be more than 10 characters</small>
+            </div>
+          </div>
+          <div>
+            <input type="text"
+                   class="form-input"
+                   placeholder="Enter Product Image URL"
+                   name="image" ngModel="{{productData?.image}}"
+                   #image="ngModel"
+                   appUrlValidation
+                   required
+            >
+            <div class="error-messages" *ngIf="image.invalid && image.touched">
+              <small *ngIf="image.errors?.['required']">Image is required</small>
+              <small *ngIf="image.errors?.['invalidUrl']">Please enter a valid url ex. "https://example.com/"</small>
+            </div>
+          </div>
+        </div>
+        <button class="form-button" [disabled]="updateProduct.invalid">Update Product</button>
       </form>
     </div>
   </div>

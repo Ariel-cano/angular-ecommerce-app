@@ -3,14 +3,22 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProductService} from '../../services/product.service';
 import {Product} from '../../models/data-types';
+import {ColorValidationDirective} from "../../directives/color-validation.directive";
+import {NameValidationDirective} from "../../directives/name-validation.directive";
+import {NgIf} from "@angular/common";
+import {UrlValidationDirective} from "../../directives/url-validation.directive";
 
 @Component({
   selector: 'app-seller-update-product',
   standalone: true,
-  imports: [
-    FormsModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        ColorValidationDirective,
+        NameValidationDirective,
+        NgIf,
+        UrlValidationDirective
+    ],
   templateUrl: './seller-update-product.component.html',
   styleUrl: './seller-update-product.component.scss'
 })
