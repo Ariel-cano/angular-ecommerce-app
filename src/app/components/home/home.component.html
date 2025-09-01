@@ -40,8 +40,7 @@
             <fa-icon [icon]="isFavorite[item.id] ? favoritesIcon : notFavoritesIcon"
                      [ngClass]="{'active-favorite': isFavorite[item.id]}"
                      (click)="toggleFavorite(item)"
-                     [title]="!isFavorite[item.id] ? 'add to favorite' : 'remove from favorite'"
-                     class="clickable-icon">
+                     [title]="!isFavorite[item.id] ? 'add to favorite' : 'remove from favorite'">
             </fa-icon>
           </div>
         </div>
