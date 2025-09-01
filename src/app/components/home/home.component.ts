@@ -152,7 +152,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   loadFavorites() {
     const userId = this.getUserId();
-    if (!userId) return console.log('User not logged in');
+    if (!userId) return alert('Please log in to view your favorites.');
     else{
       this.favoriteService.getFavoritesByUserId(userId).subscribe(favorites => {
         favorites.forEach(favorite => {
