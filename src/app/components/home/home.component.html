@@ -36,12 +36,21 @@
           <div class="button-container" *ngIf="removeCart[item.id]">
             <button class="form-button-delete card-button" (click)="removeFromCart(item)"><fa-icon [icon]="trashIcon" class="icon-button"></fa-icon>Delete from Cart</button>
           </div>
-          <div class="clickable-icon">
-            <fa-icon [icon]="isFavorite[item.id] ? favoritesIcon : notFavoritesIcon"
-                     [ngClass]="{'active-favorite': isFavorite[item.id]}"
-                     (click)="toggleFavorite(item)"
-                     [title]="!isFavorite[item.id] ? 'add to favorite' : 'remove from favorite'">
-            </fa-icon>
+          <div>
+            @if(isUserLoggedIn()){
+              <fa-icon [icon]="isFavorite[item.id] ? favoritesIcon : notFavoritesIcon"
+                       [ngClass]="{'active-favorite': isFavorite[item.id]}"
+                       (click)="toggleFavorite(item)"
+                       [title]="!isFavorite[item.id] ? 'add to favorite' : 'remove from favorite'"
+                       class="clickable-icon">
+              </fa-icon>
+            } @else {
+              <fa-icon [icon]="notFavoritesIcon"
+                       (click)="requireLoginToAddFavorites()"
+                       title="add to favorite"
+                       class="clickable-icon">
+              </fa-icon>
+            }
           </div>
         </div>
       </div>

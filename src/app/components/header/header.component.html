@@ -45,12 +45,8 @@
         <a routerLink="">Home</a>
       </div>
       <div class="icon-label">
-        <fa-icon [icon]="userIcon" class="icon"></fa-icon>
-        <a>{{userName | titlecase}}</a>
-      </div>
-      <div class="icon-label" (click)="userlogout()">
-        <fa-icon [icon]="logoutIcon" class="icon"></fa-icon>
-        <a>Logout</a>
+        <fa-icon [icon]="favoriteIcon" class="icon" [routerLink]="favoriteSrc.favoriteData() > 0 ? 'favorites' : null"></fa-icon>
+        <a [routerLink]="favoriteSrc.favoriteData() > 0 ? 'favorites' : null">Favorites({{favoriteSrc.favoriteData()}})</a>
       </div>
       <div class="icon-label">
         <fa-icon [icon]="myOrdersIcon" class="icon" routerLink="my-orders"></fa-icon>
@@ -61,8 +57,12 @@
         <a [routerLink]="productSrc.cartData() > 0 ? 'cart-page' : null">Cart({{productSrc.cartData()}})</a>
       </div>
       <div class="icon-label">
-        <fa-icon [icon]="favoriteIcon" class="icon" [routerLink]="favoriteSrc.favoriteData() > 0 ? 'favorites' : null"></fa-icon>
-        <a [routerLink]="favoriteSrc.favoriteData() > 0 ? 'favorites' : null">Favorites({{favoriteSrc.favoriteData()}})</a>
+        <fa-icon [icon]="userIcon" class="icon"></fa-icon>
+        <a>{{userName | titlecase}}</a>
+      </div>
+      <div class="icon-label" (click)="userlogout()">
+        <fa-icon [icon]="logoutIcon" class="icon"></fa-icon>
+        <a>Logout</a>
       </div>
     </ul>
     <ul *ngSwitchCase="'seller'">

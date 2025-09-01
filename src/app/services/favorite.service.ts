@@ -1,7 +1,7 @@
 import {Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {favorite} from '../models/data-types';
-import {Observable} from 'rxjs';
+import {Observable, tap} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,12 +23,14 @@ export class FavoriteService {
   }
 
   addToFavorites(favorite: favorite): Observable<favorite> {
-    this.favoriteData.update(value => value + 1);
-    return this.http.post<favorite>(this.apiUrl, favorite);
+    return this.http.post<favorite>(this.apiUrl, favorite).pipe(
+      tap(() => this.favoriteData.update(value => value + 1))
+    );
   }
 
   removeFromFavorites(id: string): Observable<any> {
-    this.favoriteData.update(value => value - 1);
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl}/${id}`).pipe(
+      tap(() => this.favoriteData.update(value => value - 1))
+    );
   }
 }

@@ -152,7 +152,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   loadFavorites() {
     const userId = this.getUserId();
-    if (!userId) return alert('Please log in to view your favorites.');
+    if (!userId) return;
     else{
       this.favoriteService.getFavoritesByUserId(userId).subscribe(favorites => {
         favorites.forEach(favorite => {
@@ -190,9 +190,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
     }
   }
+  requireLoginToAddFavorites(){
+    alert('to add to favorites, log in or register');
+    this.router.navigate(['/user-auth']);
+  }
 
 
-  private isUserLoggedIn(): boolean {
+  protected isUserLoggedIn(): boolean {
     return !!localStorage.getItem('user');
   }
 
