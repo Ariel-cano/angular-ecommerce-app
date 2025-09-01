@@ -152,7 +152,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   loadFavorites() {
     const userId = this.getUserId();
-    if (!userId) return console.log('User not logged in');
+    if (!userId) return alert('Please log in to view your favorites.');
     else{
       this.favoriteService.getFavoritesByUserId(userId).subscribe(favorites => {
         favorites.forEach(favorite => {
@@ -173,8 +173,12 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
     } else {
       const userId = this.getUserId();
+      if (!userId) {
+        console.log('User not logged in');
+        return;
+      }
       const favorite: favorite = {
-        userId: userId!,
+        userId: userId,
         productId: product.id,
         addedAt: new Date().toISOString()
       };
