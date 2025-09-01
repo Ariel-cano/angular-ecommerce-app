@@ -60,6 +60,10 @@
         <fa-icon [icon]="cartIcon" class="icon" [routerLink]="productSrc.cartData() > 0 ? 'cart-page' : null"></fa-icon>
         <a [routerLink]="productSrc.cartData() > 0 ? 'cart-page' : null">Cart({{productSrc.cartData()}})</a>
       </div>
+      <div class="icon-label">
+        <fa-icon [icon]="favoriteIcon" class="icon" [routerLink]="favoriteSrc.favoriteData() > 0 ? 'favorites' : null"></fa-icon>
+        <a [routerLink]="favoriteSrc.favoriteData() > 0 ? 'favorites' : null">Favorites({{favoriteSrc.favoriteData()}})</a>
+      </div>
     </ul>
     <ul *ngSwitchCase="'seller'">
       <div class="icon-label">
