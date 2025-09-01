@@ -58,4 +58,11 @@ export interface order{
   date: Date;
 }
 
+export interface favorite {
+  id?: string;
+  userId: string;
+  productId: string;
+  addedAt: string;
+}
+
 

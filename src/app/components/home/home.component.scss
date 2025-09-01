@@ -1,3 +1,19 @@
+.clickable-icon {
+  cursor: pointer;
+  transition: transform 0.2s;
+  font-size: 25px;
+  margin: 5px;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  &.active-favorite {
+    color: var(--primary-color);
+  }
+}
+
+
 .product-header-image{
   object-fit: contain;
   width: 100%;
