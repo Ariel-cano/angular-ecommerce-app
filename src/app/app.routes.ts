@@ -12,6 +12,7 @@ import {UserAuthComponent} from './components/user-auth/user-auth.component';
 import {CartPageComponent} from './components/cart-page/cart-page.component';
 import {CheckoutComponent} from './components/checkout/checkout.component';
 import {MyOrdersComponent} from './components/my-orders/my-orders.component';
+import {FavoritesComponent} from './components/favorites/favorites.component';
 
 export const routes: Routes = [
   {component: HomeComponent, path: ''},
@@ -25,5 +26,6 @@ export const routes: Routes = [
   {component: CartPageComponent, path:'cart-page'},
   {component: CheckoutComponent, path: 'checkout'},
   {component: MyOrdersComponent, path: 'my-orders'},
+  {component: FavoritesComponent, path: 'favorites'},
   {component: NotFoundComponent, path: '**'},
 ];

@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="row row-cols-5" >
+    <div class="col" *ngFor="let item of favorites">
+      <div class="product-item">
+        <div class="product-link" routerLink="/details/{{item.productId}}">
+          <img src="{{item.image}}" alt="product">
+          <div class="product-details">
+            <div class="product-det-cont">
+              <h4 class="product-color" [style.background-color]="item.color"></h4>
+              <h6 class="name-head truncate" >{{item.name}}</h6>
+            </div>
+            <div>
+              <h2 style="color: green"><fa-icon [icon]="discountIcon" class="icon"></fa-icon>{{item.price}}$</h2>
+            </div>
+          </div>
+        </div>
+        <div class="product-footer">
+          <div class="button-container">
+            <button class="form-button card-button" routerLink="/details/{{item.productId}}" ><fa-icon [icon]="infoIcon" class="icon-button"></fa-icon>Go to details</button>
+          </div>
+          <fa-icon [icon]="trashIcon"
+                   (click)="removeFromFavorites(item)"
+                   title="remove from favorite"
+                   class="clickable-icon">
+          </fa-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

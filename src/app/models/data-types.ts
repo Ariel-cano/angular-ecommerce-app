@@ -63,6 +63,10 @@ export interface favorite {
   userId: string;
   productId: string;
   addedAt: string;
+  name: string,
+  price: number,
+  color: string,
+  image:string,
 }
 
 
