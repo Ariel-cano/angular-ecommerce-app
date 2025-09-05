@@ -8,7 +8,7 @@ import {Observable, tap} from 'rxjs';
 })
 export class FavoriteService {
   private apiUrl = 'http://localhost:3000/favorites';
-  favoriteData = signal<number>(0)
+  favoriteData = signal<number>(0);
 
   constructor(private http : HttpClient) { }
 
