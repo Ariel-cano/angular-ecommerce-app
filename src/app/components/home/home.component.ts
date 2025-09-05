@@ -1,12 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import { ProductService } from '../../services/product.service';
-import { cart, Product } from '../../models/data-types';
+import {cart, favorite, Product} from '../../models/data-types';
 import { Subscription } from 'rxjs';
 import {NgbCarousel, NgbSlide} from '@ng-bootstrap/ng-bootstrap';
-import {NgForOf, NgIf} from '@angular/common';
-import {faCartShopping, faTag, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {NgClass, NgForOf, NgIf} from '@angular/common';
+import {
+  faCartShopping, faHeart, faHeartBroken,
+  faTag,
+  faTrash
+} from '@fortawesome/free-solid-svg-icons';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
+import {FavoriteService} from '../../services/favorite.service';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +23,8 @@ import {FaIconComponent} from '@fortawesome/angular-fontawesome';
     NgIf,
     NgbSlide,
     NgForOf,
-    FaIconComponent
+    FaIconComponent,
+    NgClass
   ],
   styleUrl: './home.component.scss'
 })
@@ -31,10 +37,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   discountIcon = faTag;
   shoppingIcon = faCartShopping;
   trashIcon = faTrash;
+  notFavoritesIcon = faHeartBroken;
+  favoritesIcon = faHeart;
+  isFavorite: { [productId: string]: boolean } = {};
+  favoriteIds: { [productId: string]: string } = {};
 
   constructor(
     private productSrc: ProductService,
-    private router: Router
+    private router: Router,
+    private favoriteService: FavoriteService
   ) {}
 
   ngOnInit() {
@@ -60,6 +71,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.cartSub = this.productSrc.cartInfo.subscribe(() => {
       this.updateCartStates();
     });
+    this.loadFavorites();
   }
 
   ngOnDestroy() {
@@ -138,8 +150,53 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
+  loadFavorites() {
+    const userId = this.getUserId();
+    if (!userId) return;
+    else{
+      this.favoriteService.getFavoritesByUserId(userId).subscribe(favorites => {
+        favorites.forEach(favorite => {
+          this.isFavorite[favorite.productId] = true;
+          if (favorite.id != null) {
+            this.favoriteIds[favorite.productId] = favorite.id;
+          }
+        });
+      });
+    }
+  }
 
-  private isUserLoggedIn(): boolean {
+  toggleFavorite(product: Product) {
+    if (this.isFavorite[product.id]) {
+      this.favoriteService.removeFromFavorites(this.favoriteIds[product.id]).subscribe(() => {
+        this.isFavorite[product.id] = false;
+        delete this.favoriteIds[product.id];
+      });
+    } else {
+      const userId = this.getUserId();
+      if (!userId) {
+        alert('to add to favorites, log in or register');
+        return;
+      }
+      const favorite: favorite = {
+        userId: userId,
+        productId: product.id,
+        addedAt: new Date().toISOString(),
+      };
+      this.favoriteService.addToFavorites(favorite).subscribe(res => {
+        this.isFavorite[product.id] = true;
+        if (res.id != null) {
+          this.favoriteIds[product.id] = res.id;
+        }
+      });
+    }
+  }
+  requireLoginToAddFavorites(){
+    alert('to add to favorites, log in or register');
+    this.router.navigate(['/user-auth']);
+  }
+
+
+  protected isUserLoggedIn(): boolean {
     return !!localStorage.getItem('user');
   }
 

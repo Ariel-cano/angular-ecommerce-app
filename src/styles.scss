@@ -215,7 +215,73 @@ button:disabled{
   padding-left: 15px;
 }
 
+.product-item .name-head{
+  font-size: 20px;
+  font-weight: 600;
+}
+.product-link{
+  cursor: pointer;
+  text-decoration: none;
+}
+.card-button{
+  width: 100%;
+}
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
 
+.clickable-icon {
+  cursor: pointer;
+  transition: transform 0.2s;
+  font-size: 25px;
+  margin: 5px;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+.product-header-image{
+  object-fit: contain;
+  width: 100%;
+  height: 600px;
+}
+
+.product-item{
+  margin-bottom: 40px;
+  img{
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    padding: 5px;
+    border: 2px solid #f8f8f8;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+  }
+  .product-footer{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  .product-details{
+    border-bottom: 1px solid #ccc;
+    padding: 15px;
+  }
+}
+.product-color{
+  border: 3px solid #000;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.product-det-cont{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';

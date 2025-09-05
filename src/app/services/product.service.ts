@@ -35,6 +35,9 @@ export class ProductService {
   popularProducts(){
     return this.http.get<Product[]>(`${this.baseUrl}?_limit=5`);
   }
+  getProductsByIds(ids: string[]) {
+    return this.http.get<Product[]>(`${this.baseUrl}?id=${ids.join('&id=')}`);
+  }
 
   getTrendyProducts(){
     return this.http.get<Product[]>(`${this.baseUrl}?_limit=16`);
@@ -103,7 +106,7 @@ export class ProductService {
     return this.http.get<order[]>('http://localhost:3000/orders?userId='+ userData.id);
   }
   deleteCartItems(cartId: string){
-    return this.http.delete(`http://localhost:3000/cart/${cartId}`).subscribe((result)=>{
+    return this.http.delete(`http://localhost:3000/cart/${cartId}`).subscribe(()=>{
       this.cartInfo.emit([]);
       this.cartData.set(0);
     });

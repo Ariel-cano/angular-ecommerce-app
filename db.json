@@ -65,15 +65,93 @@
       "email": "gwgwgwg",
       "password": "gwgwgwg",
       "id": "7eyzQPp"
+    },
+    {
+      "name": "alena",
+      "password": "",
+      "email": "",
+      "id": "JlSO7U2"
+    },
+    {
+      "name": "alena",
+      "email": "alena@gmail.com",
+      "password": "1234",
+      "id": "zRLpwms"
+    },
+    {
+      "name": "angrybirds",
+      "email": "ab@gmail.com",
+      "password": "ab",
+      "id": "rsGwRw5"
+    },
+    {
+      "name": "a",
+      "email": "a@gmail.com",
+      "password": "a",
+      "id": "h-x4V6n"
+    },
+    {
+      "name": "lakerok",
+      "email": "laker@gmail.com",
+      "password": "1",
+      "id": "BNk45uU"
+    },
+    {
+      "name": "fwfwf",
+      "email": "fwfwfwfw",
+      "password": "fwfwfwfw",
+      "id": "UzaSnK9"
+    },
+    {
+      "name": "sigma",
+      "email": "adadad",
+      "password": "dqdqdqdq",
+      "id": "7BEnwP0"
+    },
+    {
+      "name": "DdDdD",
+      "email": "dDdD",
+      "password": "dDdD",
+      "id": "8clD9SV"
+    },
+    {
+      "name": "alena",
+      "email": "zolik",
+      "password": "1313131",
+      "id": "uWm8Ass"
+    },
+    {
+      "name": "angry birds cup",
+      "email": "qqffqfqfqf",
+      "password": "qfqf",
+      "id": "NFDhjg0"
+    },
+    {
+      "name": "alena",
+      "email": "wewwwew",
+      "password": "wewewew",
+      "id": "GQUuP7Q"
+    },
+    {
+      "name": "q",
+      "email": "fadagmail.com",
+      "password": "qq",
+      "id": "wDa_f0k"
+    },
+    {
+      "name": "Dmitry Utkin",
+      "email": "soundcloud@gmail.com",
+      "password": "Madjuga1@",
+      "id": "Ez-8gvB"
     }
   ],
   "products": [
     {
-      "name": "galaxy ultra 90 pro +",
-      "price": "6000",
+      "name": "galaxy ultra 100 pro +",
+      "price": "60",
       "category": "mobile",
-      "color": "black",
-      "description": "\ninp\nnnpmom",
+      "color": "dodgerblue",
+      "description": "phone cool china great stonks ",
       "image": "https://avatars.mds.yandex.net/i?id=36224ff2bdb32e7ca2d9ffd7c8c9a3a83d25b2d6-5876519-images-thumbs&n=13",
       "id": "3ec6"
     },
@@ -106,21 +184,12 @@
     },
     {
       "name": "AlF",
-      "price": "100000000",
+      "price": "100000",
       "category": "puppet",
       "color": "brown",
       "description": "interesting customer from USA show",
       "image": "https://i1.sndcdn.com/avatars-000303645732-jft00d-t500x500.jpg",
       "id": "b4fe"
-    },
-    {
-      "id": "46e9",
-      "name": "lego sw ship",
-      "price": "10000",
-      "category": "lego",
-      "color": "red",
-      "description": "palpatin",
-      "image": "https://avatars.mds.yandex.net/get-mpic/5235128/2a0000018ea5061bed996c2c5e8970313294/orig"
     },
     {
       "name": "lego sw ship 74353",
@@ -153,10 +222,37 @@
       "name": "angry birds cup",
       "price": "1500",
       "category": "cups",
-      "color": "green",
+      "color": "red",
       "description": "angry birds cup pig green cool kid",
       "image": "https://avatars.mds.yandex.net/get-mpic/5289292/img_id6068973358773380972.jpeg/9hq",
       "id": "T8A5c5W"
+    },
+    {
+      "name": "magi manga 35",
+      "price": "9999",
+      "category": "manga",
+      "color": "green",
+      "description": "magi alibaba and alladin adventure cool manga fight mor",
+      "image": "https://n.cdn.cdek.shopping/images/shopping/CYQkugTbkdjiI9JY.jpg?v=1",
+      "id": "Uz3881W"
+    },
+    {
+      "name": "magi manga 30",
+      "price": "1500",
+      "category": "manga",
+      "color": "yellow",
+      "description": "alibaba sun cool great smilw adventure garden forest chest solo",
+      "image": "https://n.cdn.cdek.shopping/images/shopping/3o2oJsiaa2K6T14Z.jpg?v=1",
+      "id": "QRnUm4G"
+    },
+    {
+      "name": "Tshirt black",
+      "price": "5",
+      "category": "clothes",
+      "color": "black",
+      "description": "default black tshirt",
+      "image": "https://sam-basket-cdn-03mx.geobasket.ru/vol162/part16274/16274185/images/big/1.webp",
+      "id": "SJA9vHQ"
     }
   ],
   "users": [
@@ -193,42 +289,65 @@
   ],
   "cart": [
     {
-      "name": "angry birds cup",
-      "price": "1500",
-      "category": "cups",
+      "name": "magi manga 35",
+      "price": "9999",
+      "category": "manga",
       "color": "green",
-      "description": "angry birds cup pig green cool kid",
-      "image": "https://avatars.mds.yandex.net/get-mpic/5289292/img_id6068973358773380972.jpeg/9hq",
-      "productId": "T8A5c5W",
+      "description": "magi alibaba and alladin adventure cool manga fight mor",
+      "image": "https://n.cdn.cdek.shopping/images/shopping/CYQkugTbkdjiI9JY.jpg?v=1",
+      "quantity": 3,
+      "productId": "Uz3881W",
       "userId": 1,
+      "id": 2
+    },
+    {
+      "name": "magi manga 35",
+      "price": "9999",
+      "category": "manga",
+      "color": "green",
+      "description": "magi alibaba and alladin adventure cool manga fight mor",
+      "image": "https://n.cdn.cdek.shopping/images/shopping/CYQkugTbkdjiI9JY.jpg?v=1",
+      "productId": "Uz3881W",
+      "userId": 5,
       "quantity": 1,
-      "id": 7
+      "id": 3
     }
   ],
   "orders": [
     {
-      "email": "peter@test.com",
-      "address": "pr karla marks",
+      "email": "d@gmail.com",
+      "address": "qeqeqeqereg",
       "contact": "88005553535",
-      "totalPrice": 76660,
-      "userId": 1,
-      "id": 1
+      "totalPrice": 11025,
+      "userId": 5,
+      "date": "2025-08-27T17:49:59.838Z",
+      "id": 7
+    }
+  ],
+  "favorites": [
+    {
+      "userId": 5,
+      "productId": "Uz3881W",
+      "addedAt": "2025-09-01T08:31:26.069Z",
+      "id": 2
     },
     {
-      "email": "50pka@gmail.com",
-      "address": "2r2r",
-      "contact": "2r2r2",
-      "totalPrice": 10333373733,
       "userId": 5,
-      "id": 3
-    },
-    {
-      "email": "50pka@gmail.com",
-      "address": "2e1e1e",
-      "contact": "1e1e1",
-      "totalPrice": 10433,
-      "userId": 5,
+      "productId": "3ec6",
+      "addedAt": "2025-09-01T08:45:03.781Z",
       "id": 4
+    },
+    {
+      "userId": 5,
+      "productId": "jBXLWZ-",
+      "addedAt": "2025-09-01T08:50:06.765Z",
+      "id": 5
+    },
+    {
+      "userId": 5,
+      "productId": "b4fe",
+      "addedAt": "2025-09-01T08:51:20.479Z",
+      "id": 6
     }
   ]
 }

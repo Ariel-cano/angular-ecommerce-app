@@ -11,7 +11,8 @@ import {faHouse} from '@fortawesome/free-solid-svg-icons/faHouse';
 import {faUser} from '@fortawesome/free-solid-svg-icons/faUser';
 import {faRightFromBracket} from '@fortawesome/free-solid-svg-icons/faRightFromBracket';
 import {faBoxesStacked} from '@fortawesome/free-solid-svg-icons/faBoxesStacked';
-import {faCartShopping, faList, faPlus, faUserPlus} from '@fortawesome/free-solid-svg-icons';
+import {faCartShopping, faHeart, faList, faPlus, faUserPlus} from '@fortawesome/free-solid-svg-icons';
+import {FavoriteService} from '../../services/favorite.service';
 
 
 @Component({
@@ -50,10 +51,13 @@ export class HeaderComponent implements OnInit, OnDestroy{
   listIcon = faList;
   addProductIcon = faPlus;
   signUpIcon = faUserPlus;
+  favoriteIcon = faHeart;
+  userId: string | null = null;
 
-  constructor(private route: Router, protected productSrc:ProductService) {
+  constructor(private route: Router, protected productSrc:ProductService, protected favoriteSrc: FavoriteService) {
     effect(() => {
       this.productSrc.cartData();
+      this.favoriteSrc.favoriteData();
     });
   }
 
@@ -79,8 +83,10 @@ export class HeaderComponent implements OnInit, OnDestroy{
     if (cartData){
       this.productSrc.cartData.set((JSON.parse(cartData)).length);
     }
-
-
+    this.userId = this.getUserId();
+    if (this.userId) {
+      this.favoriteSrc.loadFavoritesCount(this.userId)
+    }
   }
 
   logout() {
@@ -90,6 +96,11 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
   onSearch(term: string) {
     this.searchTerms.next(term);
+  }
+
+  private getUserId(): string | null {
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user).id : null;
   }
 
   filterProducts() {
