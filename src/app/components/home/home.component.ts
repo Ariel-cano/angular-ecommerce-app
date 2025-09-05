@@ -174,7 +174,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     } else {
       const userId = this.getUserId();
       if (!userId) {
-        alert('Please log in to add favorites.');
+        alert('to add to favorites, log in or register');
         return;
       }
       const favorite: favorite = {
