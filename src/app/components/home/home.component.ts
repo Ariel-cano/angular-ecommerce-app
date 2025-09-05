@@ -181,10 +181,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         userId: userId,
         productId: product.id,
         addedAt: new Date().toISOString(),
-        name: product.name,
-        price: product.price,
-        color: product.color,
-        image: product.image
       };
       this.favoriteService.addToFavorites(favorite).subscribe(res => {
         this.isFavorite[product.id] = true;
